@@ -1,0 +1,44 @@
+:root {
+    --kb-btn-bg: #000000;
+    --kb-btn-color: #ffffff;
+    --kb-btn-border: black;
+    --kb-btn-active-color: black;
+    --kb-btn-active-bg: #ffffff;
+    --kb-btn-hint-bg: #333333;
+}
+.keyboard {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    width: 100%;
+}
+.keyboard .row {
+    margin-bottom: 2px;
+    display: -webkit-flex;
+    display: flex;
+}
+.keyboard .button {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 1px;
+    text-align: center;
+    flex-shrink: 1;
+    border-radius: 0.2rem;
+    background-color: var(--kb-btn-bg);
+    color: var(--kb-btn-color);
+    border: 1px var(--kb-btn-border) solid;
+}
+.keyboard .button sub {
+    font-weight: normal;
+}
+.keyboard .jumper {
+    -webkit-flex-grow: 1;
+    flex-grow:1;
+}
+.keyboard .button.helper {
+    background-color: var(--kb-btn-hint-bg);
+}
+.keyboard .button.active {
+    background-color: var(--kb-btn-active-bg);
+    color: var(--kb-btn-active-color);
+}

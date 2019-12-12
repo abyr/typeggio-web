@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Qwerty Typeggio</title>
+
+    <link rel="stylesheet" href="css/keyboard.css">
+    <link rel="stylesheet" href="css/page.css">
+</head>
+<body>
+    <h1>Qwerty Typeggio</h1>
+
+    <fieldset>
+        <select name="pets" id="lesson-select">
+            <option value="lesson-01.txt">Lesson 01</option>
+            <option value="lesson-02.txt">Lesson 02</option>
+        </select>
+        <br/>
+        <input type="button" value="Start" id="starter" />
+
+    </fieldset>
+
+    <section id="lesson-container"></section>
+
+    <script src="js/keyboard.js"></script>
+    <script src="js/lesson-controller.js"></script>
+
+    <script>
+        let lesson;
+
+        window.onload = () => {
+
+            const starter = document.getElementById('starter');
+
+            starter.addEventListener('click', e => {
+                if (lesson) {
+                    lesson.destroy();
+                }
+
+                e.target.blur();
+
+                lesson = new LessonController({
+                    element: document.getElementById('lesson-container'),
+                    file: document.getElementById('lesson-select').value,
+                });
+            })
+        }
+
+    </script>
+
+    <section class="footer">
+        Made by <a href="https://github.com/abyr">OD</a>
+    </section>
+</body>
+</html>

@@ -1,0 +1,41 @@
+html {
+    background-color: #eee;
+}
+
+#lesson-container {
+    width: auto;
+    margin: 0 5%;
+}
+.keyboard {
+    margin: 2em 0;
+}
+
+#line {
+    font-size: 1.75em;
+    border-bottom: 1px solid #ccc;
+}
+.typeNext {
+    font-weight: bold;
+    display: inline-block;
+}
+
+ul, nav {
+    list-style: square;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    color: #e8e8e8;
+    font-size: 1em;
+    line-height: 3em;
+    text-align: left;
+    padding: 1em 1em;
+}
+
+.footer a {
+    color: #ace;
+}
