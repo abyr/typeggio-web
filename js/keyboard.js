@@ -1,7 +1,7 @@
-(function() {
+(function () {
   var Keyboard;
 
-  Keyboard = function(source) {
+  Keyboard = function (source) {
     this.map = {
       "esc": "besc",
       "f1": "bf1",
@@ -47,81 +47,97 @@
     return this;
   };
 
-  Keyboard.prototype.getHTML = function() {
+  Keyboard.prototype.getHTML = function (layout = 'qwerty') {
+    const html = this.layoutFactory(layout);
+    return html;
+  }
+
+  Keyboard.prototype.layoutFactory = function (layout) {
+    if (layout === 'ru') {
+      return this.ruLayout();
+    } else {
+      return this.qwertyLayout();
+    }
+  }
+  Keyboard.prototype.ruLayout = function () {
+    return '';
+  }
+
+  Keyboard.prototype.qwertyLayout = function () {
     return `
-          <div>
-              <div class="row">
-                  <div class="button btilda">\`<sub>~</sub></div>
-                  <div class="button b1">1<sub>!</sub></div>
-                  <div class="button b2">2<sub>@</sub></div>
-                  <div class="button b3">3<sub>#</sub></div>
-                  <div class="button b4">4<sub>$</sub></div>
-                  <div class="button b5">5<sub>%</sub></div>
-                  <div class="button b6">6<sub>^</sub></div>
-                  <div class="button b7">7<sub>&</sub></div>
-                  <div class="button b8">8<sub>*</sub></div>
-                  <div class="button b9">9<sub>(</sub></div>
-                  <div class="button b0">0<sub>)</sub></div>
-                  <div class="button bminus">-<sub>_</sub></div>
-                  <div class="button bplus">+<sub>=</sub></div>
-                  <div class="button jumper">back</div>
-              </div>
-              <div class="row">
-                  <div class="button jumper">tab</div>
-                  <div class="button bq">Q</div>
-                  <div class="button bw">W</div>
-                  <div class="button be">E</div>
-                  <div class="button br">R</div>
-                  <div class="button bt">T</div>
-                  <div class="button by">Y</div>
-                  <div class="button bu">U</div>
-                  <div class="button bi">I</div>
-                  <div class="button bo">O</div>
-                  <div class="button bp">P</div>
-                  <div class="button bsqbro">[</div>
-                  <div class="button bscbrc">]</div>
-                  <div class="button jumper">\</div>
-              </div>
-              <div class="row">
-                  <div class="button jumper">caps lock</div>
-                  <div class="button ba">A</div>
-                  <div class="button bs">S</div>
-                  <div class="button bd">D</div>
-                  <div class="button bf helper">F</div>
-                  <div class="button bg">G</div>
-                  <div class="button bh">H</div>
-                  <div class="button bj helper">J</div>
-                  <div class="button bk">K</div>
-                  <div class="button bl">L</div>
-                  <div class="button bsemicolon">;<sub>:</sub></div>
-                  <div class="button bapostrophe">'<sub>"</sub></div>
-                  <div class="button benter jumper">enter</div>
-              </div>
-              <div class="row">
-                  <div class="button bshift jumper">shift</div>
-                  <div class="button bz">Z</div>
-                  <div class="button bx">X</div>
-                  <div class="button bc">C</div>
-                  <div class="button bv">V</div>
-                  <div class="button bb">B</div>
-                  <div class="button bn">N</div>
-                  <div class="button bm">M</div>
-                  <div class="button bcomma">,<sub><</sub></div>
-                  <div class="button bpoint">.<sub>></sub></div>
-                  <div class="button bslash">/<sub>?</sub></div>
-                  <div class="button bshiftr jumper">shift</div>
-              </div>
-              <div class="row">
-                  <div class="button bctrl">ctl</div>
-                  <div class="button bfn">fn</div>
-                  <div class="button bwin">opt</div>
-                  <div class="button balt">alt</div>
-                  <div class="button bspace jumper">space</div>
-                  <div class="button baltr">alt</div>
-                  <div class="button bmenu">opt</div>
-                  <div class="button bctrlr">ctl</div>
-              </div>
-        </div>`;
+        <div>
+            <div class="row">
+                <div class="button btilda">\`<sub>~</sub></div>
+                <div class="button b1">1<sub>!</sub></div>
+                <div class="button b2">2<sub>@</sub></div>
+                <div class="button b3">3<sub>#</sub></div>
+                <div class="button b4">4<sub>$</sub></div>
+                <div class="button b5">5<sub>%</sub></div>
+                <div class="button b6">6<sub>^</sub></div>
+                <div class="button b7">7<sub>&</sub></div>
+                <div class="button b8">8<sub>*</sub></div>
+                <div class="button b9">9<sub>(</sub></div>
+                <div class="button b0">0<sub>)</sub></div>
+                <div class="button bminus">-<sub>_</sub></div>
+                <div class="button bplus">+<sub>=</sub></div>
+                <div class="button jumper">back</div>
+            </div>
+            <div class="row">
+                <div class="button jumper">tab</div>
+                <div class="button bq">Q</div>
+                <div class="button bw">W</div>
+                <div class="button be">E</div>
+                <div class="button br">R</div>
+                <div class="button bt">T</div>
+                <div class="button by">Y</div>
+                <div class="button bu">U</div>
+                <div class="button bi">I</div>
+                <div class="button bo">O</div>
+                <div class="button bp">P</div>
+                <div class="button bsqbro">[</div>
+                <div class="button bscbrc">]</div>
+                <div class="button jumper">\</div>
+            </div>
+            <div class="row">
+                <div class="button jumper">caps lock</div>
+                <div class="button ba">A</div>
+                <div class="button bs">S</div>
+                <div class="button bd">D</div>
+                <div class="button bf helper">F</div>
+                <div class="button bg">G</div>
+                <div class="button bh">H</div>
+                <div class="button bj helper">J</div>
+                <div class="button bk">K</div>
+                <div class="button bl">L</div>
+                <div class="button bsemicolon">;<sub>:</sub></div>
+                <div class="button bapostrophe">'<sub>"</sub></div>
+                <div class="button benter jumper">enter</div>
+            </div>
+            <div class="row">
+                <div class="button bshift jumper">shift</div>
+                <div class="button bz">Z</div>
+                <div class="button bx">X</div>
+                <div class="button bc">C</div>
+                <div class="button bv">V</div>
+                <div class="button bb">B</div>
+                <div class="button bn">N</div>
+                <div class="button bm">M</div>
+                <div class="button bcomma">,<sub><</sub></div>
+                <div class="button bpoint">.<sub>></sub></div>
+                <div class="button bslash">/<sub>?</sub></div>
+                <div class="button bshiftr jumper">shift</div>
+            </div>
+            <div class="row">
+                <div class="button bctrl">ctl</div>
+                <div class="button bfn">fn</div>
+                <div class="button bwin">opt</div>
+                <div class="button balt">alt</div>
+                <div class="button bspace jumper">space</div>
+                <div class="button baltr">alt</div>
+                <div class="button bmenu">opt</div>
+                <div class="button bctrlr">ctl</div>
+            </div>
+      </div>`;
   }
 
   Keyboard.prototype.getTypingHTML = function () {
@@ -130,11 +146,11 @@
             <span id="after"></span>`;
   }
 
-  Keyboard.prototype.getButtonClass = function(alias) {
+  Keyboard.prototype.getButtonClass = function (alias) {
     return this.map[alias] || "b" + alias;
   };
 
-  Keyboard.prototype.pressButton = function(button, add) {
+  Keyboard.prototype.pressButton = function (button, add) {
     var className, lowerButton, upperButton;
 
     add = add || false;
@@ -161,12 +177,12 @@
     }
   };
 
-  Element.prototype.addClass = function(c) {
+  Element.prototype.addClass = function (c) {
     this.className += " " + c + " ";
     return this;
   };
 
-  NodeList.prototype.addClass = function(c) {
+  NodeList.prototype.addClass = function (c) {
     var el, _i, _len;
     for (_i = 0, _len = this.length; _i < _len; _i++) {
       el = this[_i];
@@ -175,7 +191,7 @@
     return this;
   };
 
-  Element.prototype.removeClass = function(c) {
+  Element.prototype.removeClass = function (c) {
     var r;
     r = new RegExp("\\s" + c + '\\s?', 'gi');
     this.className = (" " + this.className).replace(r, '');
@@ -185,7 +201,7 @@
     return this;
   };
 
-  NodeList.prototype.removeClass = function(c) {
+  NodeList.prototype.removeClass = function (c) {
     var el, _i, _len;
     for (_i = this.length - 1; _i >= 0; _i--) {
       el = this[_i];

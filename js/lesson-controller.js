@@ -3,6 +3,7 @@ class LessonController {
         this.element = element;
         this.title = '';
         this.lines = [];
+        this.layout = layout;
 
         const url = `https://raw.githubusercontent.com/abyr/typeggio-sources/master/${layout}/${file}`;
 
@@ -28,7 +29,7 @@ class LessonController {
     }
 
     start() {
-        this.view.render();
+        this.view.render(this.layout);
     }
 
     destroy() {
@@ -59,7 +60,7 @@ class LessonView {
         this.lesson = lessonModel;
     }
 
-    render() {
+    render(layout) {
         const container = document.createElement("div");
 
         const titleEl = document.createElement("h2");
@@ -75,7 +76,7 @@ class LessonView {
         hintEl.innerHTML = this.keyboard.getTypingHTML();
         keyboardEl.classList.add('keyboard');
 
-        keyboardEl.innerHTML = this.keyboard.getHTML();
+        keyboardEl.innerHTML = this.keyboard.getHTML(layout);
         container.append(titleEl, textEl, keyboardEl, hintEl);
 
         this.element.appendChild(container);
