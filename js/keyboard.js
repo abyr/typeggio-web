@@ -295,15 +295,17 @@
   }
 
   Keyboard.prototype.getTypingHTML = function () {
-    return `<span id="before"></span>
-            <span id="line" class="typeNext"></span>
-            <span id="after"></span>`;
+    return [
+      '<span id="before"></span>',
+      '<span id="line" class="typeNext"></span>',
+      '<span id="after"></span>'
+    ].join('');
   }
 
   Keyboard.prototype.getButtonClass = function (alias) {
     const res = this.fnkToClassMap[alias] || "b" + alias;
 
-    console.log('alias', alias, '=>', res);
+    // console.log('alias', alias, '=>', res);
 
     return res;
   };

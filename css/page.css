@@ -11,12 +11,15 @@ html {
 }
 
 #line {
-    font-size: 1.75em;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 0.2em solid #22c122;
 }
 .typeNext {
     font-weight: bold;
-    display: inline-block;
+}
+
+.typingLine {
+    font-family: monospace, monospace;
+    font-size: 2em;
 }
 
 ul, nav {

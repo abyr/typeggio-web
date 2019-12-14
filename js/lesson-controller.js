@@ -73,11 +73,13 @@ class LessonView {
 
         this.keyboard = new Keyboard(layout);
 
+        hintEl.classList.add('typingLine');
+
         hintEl.innerHTML = this.keyboard.getTypingHTML();
         keyboardEl.classList.add('keyboard');
 
         keyboardEl.innerHTML = this.keyboard.getHTML();
-        container.append(titleEl, textEl, keyboardEl, hintEl);
+        container.append(titleEl, keyboardEl, hintEl, textEl);
 
         this.element.appendChild(container);
 
