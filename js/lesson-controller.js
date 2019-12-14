@@ -1,10 +1,10 @@
 class LessonController {
-    constructor({ file, element }) {
+    constructor({ file, element, layout }) {
         this.element = element;
         this.title = '';
         this.lines = [];
 
-        const url = `https://raw.githubusercontent.com/abyr/typeggio-sources/master/qwerty/${file}`;
+        const url = `https://raw.githubusercontent.com/abyr/typeggio-sources/master/${layout}/${file}`;
 
         this.init({ url });
     }
