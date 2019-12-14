@@ -64,12 +64,12 @@ class LessonView {
         const container = document.createElement("div");
 
         const titleEl = document.createElement("h2");
-        const textEl = document.createElement("pre");
+        // const textEl = document.createElement("pre");
         const hintEl = document.createElement("div");
         const keyboardEl = document.createElement("div");
 
         titleEl.innerHTML = this.lesson.getTitle();
-        textEl.innerHTML = this.lesson.getText();
+        // textEl.innerHTML = this.lesson.getText();
 
         this.keyboard = new Keyboard(layout);
 
@@ -79,7 +79,7 @@ class LessonView {
         keyboardEl.classList.add('keyboard');
 
         keyboardEl.innerHTML = this.keyboard.getHTML();
-        container.append(titleEl, keyboardEl, hintEl, textEl);
+        container.append(titleEl, keyboardEl, hintEl);
 
         this.element.appendChild(container);
 
@@ -101,8 +101,6 @@ class LessonView {
     }
 
     onType(e) {
-        var typingHint = this.typingHint;
-
         e = e || window.event;
 
         const pressedCode = (e.which ? e.which : e.keyCode);
