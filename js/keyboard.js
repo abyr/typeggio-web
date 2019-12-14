@@ -4,6 +4,58 @@
   Keyboard = function (layout = 'qwerty') {
     this.layout = layout;
 
+    this.fnkToClassMap = this.fnkToClassMapFactory(layout);
+  }
+
+  Keyboard.prototype.fnkToClassMapFactory = function (layout) {
+    if (layout === 'ru') {
+      return this.ruFnkToClassMap();
+    } else {
+      return this.qwertyFnkToClassMap();
+    }
+  }
+
+  Keyboard.prototype.ruFnkToClassMap = function () {
+    const qwerty = this.qwertyFnkToClassMap();
+
+    return Object.assign({}, qwerty, {
+      'й': 'bq',
+      'ц': 'bw',
+      'у': 'be',
+      'к': 'br',
+      'е': 'bt',
+      'н': 'by',
+      'г': 'bu',
+      'ш': 'bi',
+      'щ': 'bo',
+      'з': 'bp',
+      'х': '',
+      'ъ': '',
+      'ё': '',
+      'ф': 'ba',
+      'ы': 'bs',
+      'в': 'bd',
+      'а': 'bf',
+      'п': 'bg',
+      'р': 'bh',
+      'о': 'bj',
+      'л': 'bk',
+      'д': 'bl',
+      'ж': '',
+      'э': '',
+      'я': 'bz',
+      'ч': 'bx',
+      'с': 'bc',
+      'м': 'bv',
+      'и': 'bb',
+      'т': 'bn',
+      'ь': 'bm',
+      'б': '',
+      'ю': '',
+    })
+  }
+
+  Keyboard.prototype.qwertyFnkToClassMap = function () {
     this.map = {
       "esc": "besc",
       "f1": "bf1",
@@ -44,7 +96,34 @@
       "altr": "baltr",
       "winr": "bwinr",
       "menu": "bmenu",
-      "ctrlr": "bctrlr"
+      "ctrlr": "bctrlr",
+
+      'q': 'bq',
+      'w': 'bw',
+      'e': 'be',
+      'r': 'br',
+      't': 'bt',
+      'y': 'by',
+      'u': 'bu',
+      'i': 'bi',
+      'o': 'bo',
+      'p': 'bp',
+      'a': 'ba',
+      's': 'bs',
+      'd': 'bd',
+      'f': 'bf',
+      'g': 'bg',
+      'h': 'bh',
+      'j': 'bj',
+      'k': 'bk',
+      'l': 'bl',
+      'z': 'bz',
+      'x': 'bx',
+      'c': 'bc',
+      'v': 'bv',
+      'b': 'bb',
+      'n': 'bn',
+      'm': 'bm',
     };
     return this;
   };
@@ -222,7 +301,11 @@
   }
 
   Keyboard.prototype.getButtonClass = function (alias) {
-    return this.map[alias] || "b" + alias;
+    const res = this.fnkToClassMap[alias] || "b" + alias;
+
+    console.log('alias', alias, '=>', res);
+
+    return res;
   };
 
   Keyboard.prototype.pressButton = function (button, add) {
