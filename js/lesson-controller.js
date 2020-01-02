@@ -1,3 +1,6 @@
+import FileIterator from "./text-file-iterator.js";
+import Keyboard from './keyboard.js';
+
 class LessonController {
     constructor({ file, element, layout }) {
         this.element = element;
@@ -11,7 +14,7 @@ class LessonController {
     }
 
     async init({ url }) {
-        for await (let line of makeTextFileLineIterator(url)) {
+        for await (let line of FileIterator.makeTextFileLineIterator(url)) {
             if (this.title) {
                 this.lines.push(line);
             } else {
@@ -64,12 +67,10 @@ class LessonView {
         const container = document.createElement("div");
 
         const titleEl = document.createElement("h2");
-        // const textEl = document.createElement("pre");
         const hintEl = document.createElement("div");
         const keyboardEl = document.createElement("div");
 
         titleEl.innerHTML = this.lesson.getTitle();
-        // textEl.innerHTML = this.lesson.getText();
 
         this.keyboard = new Keyboard(layout);
 
@@ -388,44 +389,4 @@ function stripSpaces(text) {
     return text.replace(/^\s+|\s+$/gm, '');
 }
 
-async function* makeTextFileLineIterator(fileURL) {
-    const utf8Decoder = new TextDecoder('utf-8'),
-        response = await fetch(fileURL),
-        reader = response.body.getReader();
-
-    let {
-        value: chunk,
-        done: readerDone
-    } = await reader.read();
-
-    chunk = chunk ? utf8Decoder.decode(chunk) : '';
-
-    const re = /\n|\r|\r\n/gm;
-    let startIndex = 0;
-
-    for (; ;) {
-        let result = re.exec(chunk);
-
-        if (!result) {
-            if (readerDone) {
-                break;
-            }
-
-            let remainder = chunk.substr(startIndex);
-
-            ({ value: chunk, done: readerDone } = await reader.read());
-
-            chunk = remainder + (chunk ? utf8Decoder.decode(chunk) : '');
-            startIndex = re.lastIndex = 0;
-
-            continue;
-        }
-
-        yield chunk.substring(startIndex, result.index);
-        startIndex = re.lastIndex;
-    }
-
-    if (startIndex < chunk.length) {
-        yield chunk.substr(startIndex);
-    }
-}
+export default LessonController;

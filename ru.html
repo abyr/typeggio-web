@@ -50,31 +50,7 @@
 
     <section id="lesson-container"></section>
 
-    <script src="js/keyboard.js"></script>
-    <script src="js/lesson-controller.js"></script>
-
-    <script>
-        let lesson;
-
-        window.onload = () => {
-
-            const starter = document.getElementById('starter');
-
-            starter.addEventListener('click', e => {
-                if (lesson) {
-                    lesson.destroy();
-                }
-
-                e.target.blur();
-
-                lesson = new LessonController({
-                    element: document.getElementById('lesson-container'),
-                    file: document.getElementById('lesson-select').value,
-                    layout: 'ru',
-                });
-            })
-        }
-    </script>
+    <script type="module" src="js/app.js"></script>
 
     <section class="footer">
         Made by <a href="https://github.com/abyr">OD</a> 2019
