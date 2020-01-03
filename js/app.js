@@ -15,7 +15,7 @@ window.onload = () => {
 
         const path = document.location.pathname;
 
-        const layout = path.substr(1, path.indexOf('.html') -1);
+        const layout = path.substr(path.lastIndexOf('/') + 1, path.indexOf('.') -1 - path.lastIndexOf('/'));
 
         lesson = new LessonController({
             element: document.getElementById('lesson-container'),
