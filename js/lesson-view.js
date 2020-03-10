@@ -2,6 +2,11 @@ import Keyboard from './keyboard.js';
 import TypingHint from './typing-hint.js';
 import TextIterator from "./text-iterator.js";
 
+/**
+ * @fires LessonView#stats:started
+ * @fires LessonView#stats:misprinted
+ * @fires LessonView#stats:finished
+ */
 class LessonView {
     constructor(element, lessonModel) {
         this.element = element;
@@ -44,6 +49,8 @@ class LessonView {
         this.renderKeyboard();
 
         document.onkeypress = this.onType.bind(this);
+
+        document.dispatchEvent(new Event('stats:started'));
     }
 
     onType(e) {
@@ -53,6 +60,7 @@ class LessonView {
         const neededCode = this.textIterator.currentLineChar().charCodeAt();
 
         if (pressedCode !== neededCode) {
+            document.dispatchEvent(new Event('stats:misprinted'));
             return false;
         }
 
@@ -92,6 +100,7 @@ class LessonView {
     }
 
     finish() {
+        document.dispatchEvent(new Event('stats:finished'));
         this.typingHint.render('Done!', '', '');
         document.onkeypress = null;
     }

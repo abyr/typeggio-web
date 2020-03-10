@@ -6,6 +6,14 @@ html {
     width: auto;
     margin: 0 5%;
 }
+
+#stats-container {
+    position: fixed;
+    left: 0;
+    bottom: 5em;
+
+}
+
 .keyboard {
     margin: 2em 0;
 }

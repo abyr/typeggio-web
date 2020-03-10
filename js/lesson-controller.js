@@ -1,6 +1,7 @@
 import FileIterator from "./text-file-iterator.js";
 import LessonModel from './lesson.js';
 import LessonView from './lesson-view.js';
+import Stats from "./stats.js";
 
 class LessonController {
     constructor({ file, element, layout }) {
@@ -26,8 +27,23 @@ class LessonController {
         const title = this.title;
         const text = this.lines.join('\n');
 
+        this.stats = new Stats({
+            element: this.element
+        });
+
         this.lessonModel = new LessonModel({ title, text });
         this.view = new LessonView(this.element, this.lessonModel);
+
+        document.addEventListener('stats:misprinted', () => {
+            this.stats.addMisprint(1);
+            this.stats.render();
+        });
+        document.addEventListener('stats:started', () => {
+            this.stats.resetMisprints();
+        });
+        document.addEventListener('stats:finished', () => {
+            console.log('stats:finished');
+        });
 
         this.start();
     }
