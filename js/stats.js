@@ -1,14 +1,25 @@
-class Stats {
-    constructor({ element }) {
-        this.element = element;
-
+class StatsDataService {
+    constructor() {
         this.misprintsCount = 0;
 
-        this.wpm = 0;
+        this.startTime = null;
+        this.endTime = null;
+    }
+
+    export() {
+        return {
+            misprintsCount: this.getMisprintsCount(),
+            spentTime: this.getSpentTime()
+        }
     }
 
     addMisprint(q = 1) {
         this.setMisprintsCount(this.getMisprintsCount() + q);
+    }
+
+    reset() {
+        this.resetTime();
+        this.resetMisprints();
     }
 
     resetMisprints() {
@@ -23,40 +34,28 @@ class Stats {
         return this.misprintsCount;
     }
 
-    setWpm(wpm) {
-        this.wpm = wpm;
+    resetTime() {
+        this.startTime = null;
+        this.endTime = null;
     }
 
-    render() {
-        const c = this.getContainer();
-
-        c.innerHTML = this.getHtml();
+    startTimer() {
+        this.startTime = getTime();
     }
 
-    getContainer() {
-        const c = document.getElementById("stats-container");
-
-        if (c) {
-            return c;
-
-        } else {
-            return this.makeContainer();
-        }
+    endTimer() {
+        this.endTime = getTime();
     }
 
-    makeContainer() {
-        const c = document.createElement("div");
-
-        c.id = "stats-container";
-
-        this.element.appendChild(c);
-
-        return c;
-    }
-
-    getHtml() {
-        return `<div class="stats-misprints">Misprints: ${this.getMisprintsCount()}</div>`;
+    getSpentTime() {
+        return this.endTime - this.startTime;
     }
 }
 
-export default Stats;
+function getTime() {
+    return (+ new Date());
+}
+
+const statsDataService = new StatsDataService();
+
+export default statsDataService;

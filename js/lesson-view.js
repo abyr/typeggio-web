@@ -11,6 +11,8 @@ class LessonView {
     constructor(element, lessonModel) {
         this.element = element;
         this.lesson = lessonModel;
+
+        this.startTyping = false;
     }
 
     render(layout) {
@@ -49,12 +51,15 @@ class LessonView {
         this.renderKeyboard();
 
         document.onkeypress = this.onType.bind(this);
-
-        document.dispatchEvent(new Event('stats:started'));
     }
 
     onType(e) {
         e = e || window.event;
+
+        if (!this.startTyping) {
+            this.startTyping = true;
+            document.dispatchEvent(new Event('stats:started'));
+        }
 
         const pressedCode = (e.which ? e.which : e.keyCode);
         const neededCode = this.textIterator.currentLineChar().charCodeAt();
@@ -100,6 +105,7 @@ class LessonView {
     }
 
     finish() {
+        this.startTyping = false;
         document.dispatchEvent(new Event('stats:finished'));
         this.typingHint.render('Done!', '', '');
         document.onkeypress = null;

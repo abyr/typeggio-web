@@ -50,3 +50,7 @@ ul, nav {
 .footer a {
     color: #ace;
 }
+
+.hidden {
+    display: none;
+}

@@ -1,3 +1,7 @@
+# Sources
+sources/
+private/
+
 # Logs
 logs
 *.log
