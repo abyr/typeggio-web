@@ -1,4 +1,5 @@
 import statsDataService from "./stats.js";
+import level from "./level.js";
 import duration from "./duration.js";
 
 class ResultsView {
@@ -41,10 +42,16 @@ class ResultsView {
 
         const wordsPerMinute = this.getWordsPerMinute();
 
+        const myLevel = level.getLevel({
+            misprintsCount,
+            wordsPerMinute
+        });
+
         return `
+            <div class="results-level level-${myLevel.code}">${myLevel.title}</div>
             <div class="results-spent-time">Spent time: ${spentTime}</div>
-            <div class="results-misprints">Misprints: ${misprintsCount}</div>
             <div class="results-wpm">Words per minute: ${wordsPerMinute}</div>
+            <div class="results-misprints">Misprints: ${misprintsCount}</div>
         `;
     }
 

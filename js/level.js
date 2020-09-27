@@ -2,40 +2,43 @@ const LEVELS_DEFINITION_MAP = {
   expert: {
     title: 'Expert',
     ratio: 1,
-    color: 'green'
+    code: 'expert'
   },
   proficient: {
     title: 'Proficient',
     ratio: 0.8,
-    color: 'green'
+    code: 'proficient'
   },
   competent: {
     title: 'Competent',
     ratio: 0.6,
-    color: 'blue'
+    code: 'competent'
   },
   advanced_beginner: {
     title: 'Advanced beginner',
     ratio: 0.4,
-    color: 'yellow'
+    code: 'advanced-beginner'
   },
   novice: {
     title: 'Novice',
     ratio: 0.2,
-    color: 'yellow'
+    code: 'novice'
   },
   fail: {
     title: 'Failed',
     ratio: 0,
-    color: 'red'
+    code: 'failed'
   }
 };
 
 const averageWpm = 44;
 
-function getLevel(stats) {
-  const accuracyRatio = 1 - stats.totalErrors / 10;
-  const speedRatio = countSpeedRatio(stats.wpm);
+function getLevel({
+  misprintsCount,
+  wordsPerMinute
+}) {
+  const accuracyRatio = countAccuracyRatio(misprintsCount);
+  const speedRatio = countSpeedRatio(wordsPerMinute);
 
   const criterias = [accuracyRatio, speedRatio];
   const sumOfCriterias = criterias.reduce((sum, x) => sum + x, 0);
@@ -49,8 +52,8 @@ function getLevel(stats) {
   }
 }
 
-function countAccuracyRatio(errors) {
-  return 1 - stats.totalErrors / 10;
+function countAccuracyRatio(misprintsCount) {
+  return 1 - misprintsCount / 10;
 }
 
 function countSpeedRatio(wpm) {
@@ -63,4 +66,4 @@ function countSpeedRatio(wpm) {
   }
 }
 
-module.exports = { getLevel };
+export default { getLevel };

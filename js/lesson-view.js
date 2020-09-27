@@ -125,7 +125,7 @@ class LessonView {
     finish() {
         this.startTyping = false;
         this.element.dispatchEvent(this.finishedEvent);
-        this.typingHint.render('Done!', '', '');
+        this.typingHint.render('', '', '');
         document.removeEventListener('keypress', this.onType);
     }
 
