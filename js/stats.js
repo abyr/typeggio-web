@@ -9,7 +9,8 @@ class StatsDataService {
     export() {
         return {
             misprintsCount: this.getMisprintsCount(),
-            spentTime: this.getSpentTime()
+            spentTime: this.getSpentTime(),
+            wpm: this.getWordsPerMinute()
         }
     }
 
@@ -20,6 +21,7 @@ class StatsDataService {
     reset() {
         this.resetTime();
         this.resetMisprints();
+        this.resetWordsCount();
     }
 
     resetMisprints() {
@@ -32,6 +34,14 @@ class StatsDataService {
 
     getMisprintsCount() {
         return this.misprintsCount;
+    }
+
+    setWordsCount(x) {
+        this.wordsCount = x;
+    }
+
+    resetWordsCount() {
+        this.wordsCount = null;
     }
 
     resetTime() {
@@ -50,6 +60,18 @@ class StatsDataService {
     getSpentTime() {
         return this.endTime - this.startTime;
     }
+
+    getWordsPerMinute() {
+        const msPerWord = this.getSpentTime() / this.getWordsCount();
+        const wpm = (60 * 1000 / msPerWord).toFixed(2);
+
+        return wpm;
+    }
+
+    getWordsCount() {
+        return this.wordsCount;
+    }
+
 }
 
 function getTime() {

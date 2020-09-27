@@ -1,8 +1,9 @@
-import FileIterator from "./text-file-iterator.js";
+import FileIterator from './text-file-iterator.js';
 import LessonModel from './lesson-model.js';
 import LessonView from './lesson-view.js';
 import statsDataService from "./stats.js";
-import StatsView from "./stats-view.js";
+import StatsView from './stats-view.js';
+import ResultsView from './results-view.js';
 
 class Lesson {
     constructor({ file, element, layout, mainProfiler }) {
@@ -37,6 +38,10 @@ class Lesson {
         const title = this.title;
         const text = this.lines.join('\n');
 
+        const wordsCount = this.lines.join(' ').split(' ').length - 1;
+
+        statsDataService.setWordsCount(wordsCount);
+
         this.statsView = new StatsView({
             element: this.element
         });
@@ -61,7 +66,6 @@ class Lesson {
     }
 
     countMisprint() {
-        console.log(`${this.layout}-${this.lessonNumber}`, statsDataService.getMisprintsCount())
         statsDataService.addMisprint(1);
         this.statsView.render();
     }
@@ -70,14 +74,18 @@ class Lesson {
         statsDataService.endTimer();
         const stats = statsDataService.export();
         this.profiler.save(`${this.layout}-${this.lessonNumber}`, stats);
+
+        this.resultsView = new ResultsView({
+            element: this.element
+        });
+
+        this.resultsView.render();
     }
 
     destroy() {
         this.element.removeEventListener('stats:misprinted', this.countMisprint);
         this.element.removeEventListener('stats:started', this.startLesson);
         this.element.removeEventListener('stats:finished', this.finishLesson);
-
-        // this.countMisprint = null;
 
         this.view.destroy();
         this.view = null;
