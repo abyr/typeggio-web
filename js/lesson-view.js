@@ -13,6 +13,21 @@ class LessonView {
         this.lesson = lessonModel;
 
         this.startTyping = false;
+
+        if (window.CustomEvent && typeof window.CustomEvent === 'function') {
+            this.misprintedEvent = new CustomEvent('stats:misprinted', { detail: {} });
+            this.startedEvent = new CustomEvent('stats:started', { detail: {} });
+            this.finishedEvent = new CustomEvent('stats:finished', { detail: {} });
+        } else {
+            this.misprintedEvent = document.createEvent('CustomEvent');
+            this.misprintedEvent.initCustomEvent('stats:misprinted', true, true, { detail: {} });
+
+            this.startedEvent = document.createEvent('CustomEvent');
+            this.startedEvent.initCustomEvent('stats:started', true, true, { detail: {} });
+
+            this.finishedEvent = document.createEvent('CustomEvent');
+            this.finishedEvent.initCustomEvent('stats:finished', true, true, { detail: {} });
+        }
     }
 
     render(layout) {
@@ -50,7 +65,9 @@ class LessonView {
 
         this.renderKeyboard();
 
-        document.onkeypress = this.onType.bind(this);
+        this.onType = this.onType.bind(this);
+
+        document.addEventListener('keypress', this.onType);
     }
 
     onType(e) {
@@ -58,14 +75,14 @@ class LessonView {
 
         if (!this.startTyping) {
             this.startTyping = true;
-            document.dispatchEvent(new Event('stats:started'));
+            this.element.dispatchEvent(this.startedEvent);
         }
 
         const pressedCode = (e.which ? e.which : e.keyCode);
         const neededCode = this.textIterator.currentLineChar().charCodeAt();
 
         if (pressedCode !== neededCode) {
-            document.dispatchEvent(new Event('stats:misprinted'));
+            this.element.dispatchEvent(this.misprintedEvent);
             return false;
         }
 
@@ -106,12 +123,13 @@ class LessonView {
 
     finish() {
         this.startTyping = false;
-        document.dispatchEvent(new Event('stats:finished'));
+        this.element.dispatchEvent(this.finishedEvent);
         this.typingHint.render('Done!', '', '');
-        document.onkeypress = null;
+        document.removeEventListener('keypress', this.onType);
     }
 
     destroy() {
+        document.removeEventListener('keypress', this.onType);
         while (this.element.firstChild) {
             this.element.removeChild(this.element.firstChild);
         }

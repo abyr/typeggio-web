@@ -39,6 +39,10 @@ class StatsView {
     getMisprintsCount() {
         return statsDataService.getMisprintsCount();
     }
+
+    destroy() {
+
+    }
 }
 
 export default StatsView;
