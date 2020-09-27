@@ -1,15 +1,14 @@
 class Storage {
-    constructor(prefix = 'typeggio-') {
-        this.prefix = prefix;
+    constructor() {
         this.engine = window.localStorage;
     }
 
     getItem() {
-        localStorage.getItem(this.prefix + name);
+        localStorage.getItem(name);
     }
 
     setItem(name, value) {
-        localStorage.setItem(this.prefix + name, value);
+        localStorage.setItem(name, value);
     }
 
     export() {

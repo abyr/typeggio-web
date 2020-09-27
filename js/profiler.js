@@ -15,7 +15,7 @@ class Profiler {
     }
 
     save(item, value) {
-        this.storage.setItem(item, value);
+        this.storage.setItem(item, JSON.stringify(value));
     }
 
     getProfile() {
