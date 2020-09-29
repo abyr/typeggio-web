@@ -1,21 +1,19 @@
 import FileIterator from './text-file-iterator.js';
 import LessonModel from './lesson-model.js';
 import LessonView from './lesson-view.js';
-import statsDataService from "./stats.js";
-import StatsView from './stats-view.js';
-import ResultsView from './results-view.js';
+
+import LessonStatsView from './lesson-stats-view.js';
+import LessonResultsView from './lesson-results-view.js';
 
 class Lesson {
-    constructor({ file, element, layout, mainProfiler }) {
+    constructor({ file, element, layout, statist }) {
         this.element = element;
         this.title = '';
         this.lines = [];
         this.layout = layout;
-        this.profiler = mainProfiler;
+        this.statist = statist;
 
-        // github
         const url = `https://raw.githubusercontent.com/abyr/typeggio-sources/master/${layout}/${file}`;
-        // local
         // const url = `sources/${layout}/${file}`;
 
         const parts = url.split('/');
@@ -40,10 +38,11 @@ class Lesson {
 
         const wordsCount = this.lines.join(' ').split(' ').length - 1;
 
-        statsDataService.setWordsCount(wordsCount);
+        this.statist.setWordsCount(wordsCount);
 
-        this.statsView = new StatsView({
-            element: this.element
+        this.lessonStatsView = new LessonStatsView({
+            element: this.element,
+            statist: this.statist
         });
 
         this.lessonModel = new LessonModel({ title, text });
@@ -61,22 +60,22 @@ class Lesson {
     }
 
     startLesson() {
-        statsDataService.resetMisprints();
-        statsDataService.startTimer();
+        this.statist.resetMisprints();
+        this.statist.startTimer();
     }
 
     countMisprint() {
-        statsDataService.addMisprint(1);
-        this.statsView.render();
+        this.statist.addMisprint(1);
+        this.lessonStatsView.render();
     }
 
     finishLesson() {
-        statsDataService.endTimer();
-        const stats = statsDataService.export();
-        this.profiler.save(`${this.layout}-${this.lessonNumber}`, stats);
+        this.statist.endTimer();
+        const lessonStats = this.statist.export();
 
-        this.resultsView = new ResultsView({
-            element: this.element
+        this.resultsView = new LessonResultsView({
+            element: this.element,
+            statist: this.statist
         });
 
         this.resultsView.render();
@@ -90,8 +89,8 @@ class Lesson {
         this.view.destroy();
         this.view = null;
 
-        this.statsView.destroy();
-        this.statsView = null;
+        this.lessonStatsView.destroy();
+        this.lessonStatsView = null;
     }
 
     start() {

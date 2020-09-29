@@ -1,8 +1,7 @@
-import statsDataService from "./stats.js";
-
-class StatsView {
-    constructor({ element }) {
+class LessonStatsView {
+    constructor({ element, statist }) {
         this.element = element;
+        this.statist = statist
     }
 
     render() {
@@ -12,7 +11,7 @@ class StatsView {
     }
 
     getContainer() {
-        const c = document.getElementById("stats-container");
+        const c = document.getElementById("lesson-stats-container");
 
         if (c) {
             return c;
@@ -25,7 +24,7 @@ class StatsView {
     makeContainer() {
         const c = document.createElement("div");
 
-        c.id = "stats-container";
+        c.id = "lesson-stats-container";
 
         this.element.appendChild(c);
 
@@ -37,10 +36,10 @@ class StatsView {
     }
 
     getMisprintsCount() {
-        return statsDataService.getMisprintsCount();
+        return this.statist.getMisprintsCount();
     }
 
     destroy() {}
 }
 
-export default StatsView;
+export default LessonStatsView;

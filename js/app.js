@@ -1,9 +1,10 @@
-import Profiler from './profiler.js';
+import Results from './results.js';
 import Lesson from './lesson.js';
+import Statist from "./statist.js";
 
 let lesson;
 
-const mainProfiler = new Profiler();
+const results = new Results();
 
 window.onload = () => {
 
@@ -19,21 +20,27 @@ window.onload = () => {
 
         const layout = path.substr(path.lastIndexOf('/') + 1, path.indexOf('.') -1 - path.lastIndexOf('/'));
 
+        const statist = new Statist({
+            onFinishCallback: result => {
+                results.save(`${layout}-${lesson.lessonNumber}`, result);
+            }
+        });
+
         lesson = new Lesson({
             element: document.getElementById('lesson-container'),
             file: document.getElementById('lesson-select').value,
-            mainProfiler: mainProfiler,
-            layout
+            layout,
+            statist
         });
 
     });
 
     document.getElementById('exporter').addEventListener('click', e => {
-        mainProfiler.export();
+        results.export();
     });
 
 
     document.getElementById('importer').addEventListener('change', e => {
-        mainProfiler.importFile(e);
+        results.importFile(e);
     });
 }

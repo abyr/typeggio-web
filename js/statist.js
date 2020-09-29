@@ -1,9 +1,11 @@
-class StatsDataService {
-    constructor() {
+class Statist {
+    constructor({ onFinishCallback }) {
         this.misprintsCount = 0;
 
         this.startTime = null;
         this.endTime = null;
+
+        this.onFinishCallback = onFinishCallback;
     }
 
     export() {
@@ -55,6 +57,10 @@ class StatsDataService {
 
     endTimer() {
         this.endTime = getTime();
+
+        if (this.onFinishCallback) {
+            this.onFinishCallback(this.export());
+        }
     }
 
     getSpentTime() {
@@ -78,6 +84,4 @@ function getTime() {
     return (+ new Date());
 }
 
-const statsDataService = new StatsDataService();
-
-export default statsDataService;
+export default Statist;

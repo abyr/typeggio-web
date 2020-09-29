@@ -1,29 +1,13 @@
 import Storage from './storage.js';
 
-class Profiler {
+class Results {
 
     constructor() {
         this.storage = new Storage();
-
-        const profile = this.getProfile();
-
-        if (!profile) {
-            profile = this.makeNewProfile();
-        }
-
-        this.profile = profile;
     }
 
     save(item, value) {
         this.storage.setItem(item, JSON.stringify(value));
-    }
-
-    getProfile() {
-        return {};
-    }
-
-    makeNewProfile() {
-        return {};
     }
 
     export() {
@@ -58,8 +42,6 @@ class Profiler {
             var src = event.target.result;
             var json = JSON.parse(src);
 
-            console.log(src);
-
             this.import(JSON.stringify(json, null, 4));
         };
         reader.readAsText(files[0]);
@@ -72,4 +54,4 @@ class Profiler {
 
 }
 
-export default Profiler;
+export default Results;

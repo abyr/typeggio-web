@@ -1,10 +1,10 @@
-import statsDataService from "./stats.js";
 import level from "./level.js";
 import duration from "./duration.js";
 
-class ResultsView {
-    constructor({ element }) {
+class LessonResultsView {
+    constructor({ element, statist }) {
         this.element = element;
+        this.statist = statist
     }
 
     render() {
@@ -56,18 +56,18 @@ class ResultsView {
     }
 
     getMisprintsCount() {
-        return statsDataService.getMisprintsCount();
+        return this.statist.getMisprintsCount();
     }
 
     getSpentTime() {
-        return statsDataService.getSpentTime();
+        return this.statist.getSpentTime();
     }
 
     getWordsPerMinute() {
-        return statsDataService.getWordsPerMinute();
+        return this.statist.getWordsPerMinute();
     }
 
     destroy() {}
 }
 
-export default ResultsView;
+export default LessonResultsView;

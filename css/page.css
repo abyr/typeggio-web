@@ -7,7 +7,7 @@ html {
     margin: 0 5%;
 }
 
-#stats-container {
+#lesson-stats-container {
     position: fixed;
     left: 0;
     bottom: 5em;
