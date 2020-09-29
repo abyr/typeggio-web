@@ -1,7 +1,7 @@
 import level from "./level.js";
 import duration from "./duration.js";
 
-class LessonResultsView {
+class LessonResultView {
     constructor({ element, statist }) {
         this.element = element;
         this.statist = statist
@@ -70,4 +70,4 @@ class LessonResultsView {
     destroy() {}
 }
 
-export default LessonResultsView;
+export default LessonResultView;

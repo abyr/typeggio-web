@@ -1,11 +1,9 @@
 class Statist {
-    constructor({ onFinishCallback }) {
+    constructor() {
         this.misprintsCount = 0;
 
         this.startTime = null;
         this.endTime = null;
-
-        this.onFinishCallback = onFinishCallback;
     }
 
     export() {
@@ -57,10 +55,6 @@ class Statist {
 
     endTimer() {
         this.endTime = getTime();
-
-        if (this.onFinishCallback) {
-            this.onFinishCallback(this.export());
-        }
     }
 
     getSpentTime() {

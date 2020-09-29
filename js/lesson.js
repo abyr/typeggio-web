@@ -1,9 +1,8 @@
 import FileIterator from './text-file-iterator.js';
 import LessonModel from './lesson-model.js';
 import LessonView from './lesson-view.js';
-
 import LessonStatsView from './lesson-stats-view.js';
-import LessonResultsView from './lesson-results-view.js';
+import LessonResultView from './lesson-result-view.js';
 
 class Lesson {
     constructor({ file, element, layout, statist }) {
@@ -71,14 +70,27 @@ class Lesson {
 
     finishLesson() {
         this.statist.endTimer();
-        const lessonStats = this.statist.export();
 
-        this.resultsView = new LessonResultsView({
+        this.dispatchFinishEvent();
+
+        this.resultView = new LessonResultView({
             element: this.element,
             statist: this.statist
         });
 
-        this.resultsView.render();
+        this.resultView.render();
+    }
+
+    dispatchFinishEvent() {
+        this.finishedEvent = new CustomEvent('lesson:finished', {
+            detail: {
+                layout: this.layout,
+                lessonNumber: this.lessonNumber,
+                result: this.statist.export()
+            }
+        });
+
+        this.element.dispatchEvent(this.finishedEvent);
     }
 
     destroy() {

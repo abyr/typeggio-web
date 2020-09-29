@@ -14,20 +14,9 @@ class LessonView {
 
         this.startTyping = false;
 
-        if (window.CustomEvent && typeof window.CustomEvent === 'function') {
-            this.misprintedEvent = new CustomEvent('stats:misprinted', { detail: {} });
-            this.startedEvent = new CustomEvent('stats:started', { detail: {} });
-            this.finishedEvent = new CustomEvent('stats:finished', { detail: {} });
-        } else {
-            this.misprintedEvent = document.createEvent('CustomEvent');
-            this.misprintedEvent.initCustomEvent('stats:misprinted', true, true, { detail: {} });
-
-            this.startedEvent = document.createEvent('CustomEvent');
-            this.startedEvent.initCustomEvent('stats:started', true, true, { detail: {} });
-
-            this.finishedEvent = document.createEvent('CustomEvent');
-            this.finishedEvent.initCustomEvent('stats:finished', true, true, { detail: {} });
-        }
+        this.misprintedEvent = new CustomEvent('stats:misprinted', { detail: {} });
+        this.startedEvent = new CustomEvent('stats:started', { detail: {} });
+        this.finishedEvent = new CustomEvent('stats:finished', { detail: {} });
     }
 
     render(layout) {
