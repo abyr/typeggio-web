@@ -1,4 +1,5 @@
-import Results from './results.js';
+import Results from './results/results.js';
+import ResultsView from './results/results-view.js';
 import Lesson from './lesson/lesson.js';
 import Statist from "./statist.js";
 
@@ -7,6 +8,7 @@ let lesson;
 
 const results = new Results();
 
+let resultsView;
 
 function saveLessonResult(evnt) {
     const { result, layout, lessonNumber } = evnt.detail;
@@ -18,13 +20,22 @@ window.onload = () => {
 
     var allResults = results.getAll();
 
-    console.log('all results', allResults);
+    resultsView = new ResultsView({
+        element: document.getElementById('results-view-container'),
+        allResults: allResults
+    });
+    resultsView.render();
 
     document.getElementById('starter').addEventListener('click', e => {
         if (lesson) {
             lesson.element.removeEventListener('lesson:finished', saveLessonResult);
             lesson.destroy();
             lesson = null;
+        }
+
+        if (resultsView) {
+            resultsView.destroy();
+            resultsView = null;
         }
 
         e.target.blur();
