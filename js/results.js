@@ -11,7 +11,7 @@ class Results {
     }
 
     export() {
-        var exportData = this.storage.export();
+        var exportData = this.getAll();
 
         var _exportData = JSON.stringify(exportData , null, 4);
 
@@ -26,6 +26,10 @@ class Results {
         vLink.setAttribute('download', vName);
 
         vLink.click();
+    }
+
+    getAll() {
+        return this.storage.export();
     }
 
     importFile(e) {

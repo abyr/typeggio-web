@@ -1,5 +1,5 @@
 import level from "./level.js";
-import duration from "./duration.js";
+import duration from "../duration.js";
 
 class LessonResultView {
     constructor({ element, statist }) {

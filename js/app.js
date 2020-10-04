@@ -1,5 +1,5 @@
 import Results from './results.js';
-import Lesson from './lesson.js';
+import Lesson from './lesson/lesson.js';
 import Statist from "./statist.js";
 
 
@@ -15,6 +15,10 @@ function saveLessonResult(evnt) {
 }
 
 window.onload = () => {
+
+    var allResults = results.getAll();
+
+    console.log('all results', allResults);
 
     document.getElementById('starter').addEventListener('click', e => {
         if (lesson) {
