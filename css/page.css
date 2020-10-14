@@ -52,7 +52,15 @@ ul, nav {
     list-style: square;
 }
 
-.footer {
+#results-controls {
+    position: fixed;
+    bottom: 90px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+}
+
+#footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -65,7 +73,7 @@ ul, nav {
     padding: 1em 1em;
 }
 
-.footer a {
+#footer a {
     color: #ace;
 }
 

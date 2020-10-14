@@ -12,53 +12,57 @@
 <body>
     <h1>Клавиатурная физкультура Typeggio</h1>
 
-    <fieldset>
-        <select name="pets" id="lesson-select">
-            <option value="lesson-01.txt">Упражнение 01</option>
-            <option value="lesson-02.txt">Упражнение 02</option>
-            <option value="lesson-03.txt">Упражнение 03</option>
-            <option value="lesson-04.txt">Упражнение 04</option>
-            <option value="lesson-05.txt">Упражнение 05</option>
-            <option value="lesson-06.txt">Упражнение 06</option>
-            <option value="lesson-07.txt">Упражнение 07</option>
-            <option value="lesson-08.txt">Упражнение 08</option>
-            <option value="lesson-09.txt">Упражнение 09</option>
-            <option value="lesson-10.txt">Упражнение 10</option>
-            <option value="lesson-11.txt">Упражнение 11</option>
-            <option value="lesson-12.txt">Упражнение 12</option>
-            <option value="lesson-13.txt">Упражнение 13</option>
-            <option value="lesson-14.txt">Упражнение 14</option>
-            <option value="lesson-15.txt">Упражнение 15</option>
-            <option value="lesson-16.txt">Упражнение 16</option>
-            <option value="lesson-17.txt">Упражнение 17</option>
-            <option value="lesson-18.txt">Упражнение 18</option>
-            <option value="lesson-19.txt">Упражнение 19</option>
-            <option value="lesson-20.txt">Упражнение 20</option>
-            <option value="lesson-21.txt">Упражнение 21</option>
-            <option value="lesson-22.txt">Упражнение 22</option>
-            <option value="lesson-23.txt">Упражнение 23</option>
-            <option value="lesson-24.txt">Упражнение 24</option>
-            <option value="lesson-25.txt">Упражнение 25</option>
-            <option value="lesson-26.txt">Упражнение 26</option>
-            <option value="lesson-27.txt">Упражнение 27</option>
-            <option value="lesson-28.txt">Упражнение 28</option>
-        </select>
+    <section id="landing-layout">
+        <h2>Lessons</h2>
+        <fieldset>
+            <select data-layout="ru" id="lesson-select">
+                <option value="lesson-01.txt">Упражнение 01</option>
+                <option value="lesson-02.txt">Упражнение 02</option>
+                <option value="lesson-03.txt">Упражнение 03</option>
+                <option value="lesson-04.txt">Упражнение 04</option>
+                <option value="lesson-05.txt">Упражнение 05</option>
+                <option value="lesson-06.txt">Упражнение 06</option>
+                <option value="lesson-07.txt">Упражнение 07</option>
+                <option value="lesson-08.txt">Упражнение 08</option>
+                <option value="lesson-09.txt">Упражнение 09</option>
+                <option value="lesson-10.txt">Упражнение 10</option>
+                <option value="lesson-11.txt">Упражнение 11</option>
+                <option value="lesson-12.txt">Упражнение 12</option>
+                <option value="lesson-13.txt">Упражнение 13</option>
+                <option value="lesson-14.txt">Упражнение 14</option>
+                <option value="lesson-15.txt">Упражнение 15</option>
+                <option value="lesson-16.txt">Упражнение 16</option>
+                <option value="lesson-17.txt">Упражнение 17</option>
+                <option value="lesson-18.txt">Упражнение 18</option>
+                <option value="lesson-19.txt">Упражнение 19</option>
+                <option value="lesson-20.txt">Упражнение 20</option>
+                <option value="lesson-21.txt">Упражнение 21</option>
+                <option value="lesson-22.txt">Упражнение 22</option>
+                <option value="lesson-23.txt">Упражнение 23</option>
+                <option value="lesson-24.txt">Упражнение 24</option>
+                <option value="lesson-25.txt">Упражнение 25</option>
+                <option value="lesson-26.txt">Упражнение 26</option>
+                <option value="lesson-27.txt">Упражнение 27</option>
+                <option value="lesson-28.txt">Упражнение 28</option>
+            </select>
+            <input type="button" value="Начать" id="starter" />
+        </fieldset>
+    </section>
+
+    <div id="lesson-result"></div>
+    <section id="lesson-container"></section>
+    <section id="all-results-container"></section>
+
+    <section id="results-controls">
         <input type="button" value="Экспорт" id="exporter" />
         <label for="importer">Импорт:</label>
-        <input type="file" id="importer" class="">
-        <br/>
-        <input type="button" value="Начать" id="starter" />
-
-    </fieldset>
-
-    <section id="lesson-container"></section>
-
-    <section id="all-results-container"></section>
+        <input type="file" id="importer">
+    </section>
 
     <script type="module" src="js/app.js"></script>
 
-    <section class="footer">
-        Made by <a href="https://github.com/abyr">OD</a> 2019
+    <section id="footer">
+        Сделал <a href="https://github.com/abyr">ОД</a>
     </section>
 </body>
 </html>
