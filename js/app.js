@@ -3,6 +3,7 @@ import ResultsView from './results/results-view.js';
 import Lesson from './lesson/lesson.js';
 import Statist from "./statist.js";
 
+const layout = document.querySelector('#lesson-select').getAttribute('data-layout');
 const results = new Results();
 
 let lesson;
@@ -11,8 +12,6 @@ let resultsView;
 const screenController = {
     lessonLayout: () => {
         screenController.clearLayout();
-
-        const layout = document.querySelector('#lesson-select').getAttribute('data-layout');
 
         const statist = new Statist();
 
@@ -27,9 +26,22 @@ const screenController = {
     },
 
     landingLayout: () => {
+        console.log(results.getAll());
+        const allResObj = results.getAll();
+
+        const layoutRes = Object.entries(allResObj).reduce(function (res, pair) {
+            const [key, value] = pair;
+
+            // FIXME: magic spell
+            if (key.indexOf(layout + '-') === 0) {
+                res[key] = value;
+            }
+            return res;
+          }, {});
+
         resultsView = new ResultsView({
             element: document.getElementById('results-view-container'),
-            allResults: results.getAll()
+            allResults: layoutRes
         });
         resultsView.render();
     },
