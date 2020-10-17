@@ -4,17 +4,17 @@ import duration from "../duration.js";
 class LessonResultView {
     constructor({ element, statist }) {
         this.element = element;
-        this.statist = statist
+        this.statist = statist;
+
+        this.containerId = 'results-container';
     }
 
     render() {
-        const c = this.getContainer();
-
-        c.innerHTML = this.getHtml();
+        this.element.innerHTML = this.getHtml();
     }
 
     getContainer() {
-        const c = document.getElementById("results-container");
+        const c = document.getElementById(this.containerId);
 
         if (c) {
             return c;
@@ -27,7 +27,7 @@ class LessonResultView {
     makeContainer() {
         const c = document.createElement("div");
 
-        c.id = "results-container";
+        c.id = this.containerId;
 
         this.element.appendChild(c);
 
@@ -67,7 +67,13 @@ class LessonResultView {
         return this.statist.getWordsPerMinute();
     }
 
-    destroy() {}
+    destroy() {
+        const container = this.getContainer();
+
+        while(container.firstChild) {
+            existingContainer.removeChild(existingContainer.firstChild);
+        }
+    }
 }
 
 export default LessonResultView;

@@ -12,46 +12,99 @@
 <body>
     <h1>Клавиатурная физкультура Typeggio</h1>
 
+    <section id="navigation"></section>
+
     <section id="landing-layout">
-        <h2>Lessons</h2>
-        <fieldset>
-            <select data-layout="ru" id="lesson-select">
-                <option value="lesson-01.txt">Упражнение 01</option>
-                <option value="lesson-02.txt">Упражнение 02</option>
-                <option value="lesson-03.txt">Упражнение 03</option>
-                <option value="lesson-04.txt">Упражнение 04</option>
-                <option value="lesson-05.txt">Упражнение 05</option>
-                <option value="lesson-06.txt">Упражнение 06</option>
-                <option value="lesson-07.txt">Упражнение 07</option>
-                <option value="lesson-08.txt">Упражнение 08</option>
-                <option value="lesson-09.txt">Упражнение 09</option>
-                <option value="lesson-10.txt">Упражнение 10</option>
-                <option value="lesson-11.txt">Упражнение 11</option>
-                <option value="lesson-12.txt">Упражнение 12</option>
-                <option value="lesson-13.txt">Упражнение 13</option>
-                <option value="lesson-14.txt">Упражнение 14</option>
-                <option value="lesson-15.txt">Упражнение 15</option>
-                <option value="lesson-16.txt">Упражнение 16</option>
-                <option value="lesson-17.txt">Упражнение 17</option>
-                <option value="lesson-18.txt">Упражнение 18</option>
-                <option value="lesson-19.txt">Упражнение 19</option>
-                <option value="lesson-20.txt">Упражнение 20</option>
-                <option value="lesson-21.txt">Упражнение 21</option>
-                <option value="lesson-22.txt">Упражнение 22</option>
-                <option value="lesson-23.txt">Упражнение 23</option>
-                <option value="lesson-24.txt">Упражнение 24</option>
-                <option value="lesson-25.txt">Упражнение 25</option>
-                <option value="lesson-26.txt">Упражнение 26</option>
-                <option value="lesson-27.txt">Упражнение 27</option>
-                <option value="lesson-28.txt">Упражнение 28</option>
-            </select>
-            <input type="button" value="Начать" id="starter" />
-        </fieldset>
+        <ul data-layout="ru" id="lesson-select">
+            <li class="lesson-card" data-lesson-number="01" data-filename="lesson-01.txt">
+                <div class="lesson-number">Упражнение 01</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="02" data-filename="lesson-02.txt">
+                <div class="lesson-number">Упражнение 02</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="03" data-filename="lesson-03.txt">
+                <div class="lesson-number">Упражнение 03</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="04" data-filename="lesson-04.txt">
+                <div class="lesson-number">Упражнение 04</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="05" data-filename="lesson-05.txt">
+                <div class="lesson-number">Упражнение 05</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="06" data-filename="lesson-06.txt">
+                <div class="lesson-number">Упражнение 06</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="07" data-filename="lesson-07.txt">
+                <div class="lesson-number">Упражнение 07</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="08" data-filename="lesson-08.txt">
+                <div class="lesson-number">Упражнение 08</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="09" data-filename="lesson-09.txt">
+                <div class="lesson-number">Упражнение 09</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="10" data-filename="lesson-10.txt">
+                <div class="lesson-number">Упражнение 10</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="11" data-filename="lesson-11.txt">
+                <div class="lesson-number">Упражнение 11</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="12" data-filename="lesson-12.txt">
+                <div class="lesson-number">Упражнение 12</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="13" data-filename="lesson-13.txt">
+                <div class="lesson-number">Упражнение 13</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="14" data-filename="lesson-14.txt">
+                <div class="lesson-number">Упражнение 14</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="15" data-filename="lesson-15.txt">
+                <div class="lesson-number">Упражнение 15</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="16" data-filename="lesson-16.txt">
+                <div class="lesson-number">Упражнение 16</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="17" data-filename="lesson-17.txt">
+                <div class="lesson-number">Упражнение 17</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="18" data-filename="lesson-18.txt">
+                <div class="lesson-number">Упражнение 18</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="19" data-filename="lesson-19.txt">
+                <div class="lesson-number">Упражнение 19</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="20" data-filename="lesson-20.txt">
+                <div class="lesson-number">Упражнение 20</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="21" data-filename="lesson-21.txt">
+                <div class="lesson-number">Упражнение 21</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="22" data-filename="lesson-22.txt">
+                <div class="lesson-number">Упражнение 22</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="23" data-filename="lesson-23.txt">
+                <div class="lesson-number">Упражнение 23</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="24" data-filename="lesson-24.txt">
+                <div class="lesson-number">Упражнение 24</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="25" data-filename="lesson-25.txt">
+                <div class="lesson-number">Упражнение 25</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="26" data-filename="lesson-26.txt">
+                <div class="lesson-number">Упражнение 26</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="27" data-filename="lesson-27.txt">
+                <div class="lesson-number">Упражнение 27</div>
+            </li>
+            <li class="lesson-card" data-lesson-number="28" data-filename="lesson-28.txt">
+                <div class="lesson-number">Упражнение 28</div>
+            </li>
+        </ul>
     </section>
 
-    <div id="lesson-result"></div>
     <section id="lesson-container"></section>
-    <section id="all-results-container"></section>
+
 
     <section id="results-controls">
         <input type="button" value="Экспорт" id="exporter" />

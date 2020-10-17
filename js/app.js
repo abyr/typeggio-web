@@ -1,54 +1,58 @@
 import Results from './results/results.js';
-import ResultsView from './results/results-view.js';
 import Lesson from './lesson/lesson.js';
-import Statist from "./statist.js";
+import level from './lesson/level.js';
+import NavigationView from './navigation-view.js';
 
 const layout = document.querySelector('#lesson-select').getAttribute('data-layout');
 const results = new Results();
 
 let lesson;
-let resultsView;
+let navigationView;
 
 const screenController = {
-    lessonLayout: () => {
+
+    landingLayout: () => {
+        navigationView.setLinks([{
+            title: 'Lessons'
+        }]);
+        navigationView.render();
+
+        screenController.showLessons();
+        screenController.showResults();
+    },
+
+    lessonLayout: (lessonFile, lessonShortTitle) => {
         screenController.clearLayout();
 
-        const statist = new Statist();
+        navigationView.setLinks([{
+            href: window.location.href,
+            title: 'Lessons'
+        }, {
+            title: lessonShortTitle
+        }]);
+        navigationView.render();
 
         lesson = new Lesson({
             element: document.getElementById('lesson-container'),
-            file: document.getElementById('lesson-select').value,
-            layout,
-            statist
+            file: lessonFile,
+            layout
         });
 
         lesson.element.addEventListener('lesson:finished', saveLessonResult);
-    },
 
-    landingLayout: () => {
-        console.log(results.getAll());
-        const allResObj = results.getAll();
 
-        const layoutRes = Object.entries(allResObj).reduce(function (res, pair) {
-            const [key, value] = pair;
-
-            // FIXME: magic spell
-            if (key.indexOf(layout + '-') === 0) {
-                res[key] = value;
-            }
-            return res;
-          }, {});
-
-        resultsView = new ResultsView({
-            element: document.getElementById('results-view-container'),
-            allResults: layoutRes
-        });
-        resultsView.render();
     },
 
     clearLayout: () => {
         screenController.hideResultsControls();
+        screenController.hideLessons();
 
+        if (lesson) {
+            screenController.closeLesson();
+        }
+    },
+
+    closeLesson: () => {
         if (lesson) {
             lesson.element.removeEventListener('lesson:finished', e => {
                 saveLessonResult(e);
@@ -59,11 +63,56 @@ const screenController = {
             lesson.destroy();
             lesson = null;
         }
+    },
 
-        if (resultsView) {
-            resultsView.destroy();
-            resultsView = null;
-        }
+    showLessons: function () {
+        const landingSection = document.querySelector('#landing-layout');
+
+        showEl(landingSection);
+    },
+
+    hideLessons: function () {
+        const landingSection = document.querySelector('#landing-layout');
+
+        hideEl(landingSection);
+    },
+
+    showResults: () => {
+        var lessonCards = document.querySelectorAll('.lesson-card');
+
+        Array.from(lessonCards).forEach(function(lessonCard) {
+            const lessonNumber = lessonCard.getAttribute('data-lesson-number');
+            const lessonResult = screenController.getLessonResult(lessonNumber);
+
+            let resElement;
+
+            if (lessonResult) {
+                resElement = lessonCard.querySelector('.lesson-result');
+
+                if (!resElement) {
+                    resElement = document.createElement('div');
+
+                    lessonCard.appendChild(resElement);
+                }
+
+                const lessonLevel = level.getLevel({
+                    misprintsCount: lessonResult.misprintsCount,
+                    wordsPerMinute: lessonResult.wpm
+                });
+
+                resElement.className = 'lesson-brief-result';
+
+                resElement.innerHTML = lessonLevel.ratio * 100 + '/100';
+
+                lessonCard.classList.add('card-level-' + lessonLevel.code);
+            }
+        });
+    },
+
+    getLessonResult: lessonNumber => {
+        const key = layout + '-' + lessonNumber;
+
+        return results.getResult(key);
     },
 
     hideResultsControls: () => {
@@ -73,12 +122,20 @@ const screenController = {
 
 
 window.onload = () => {
+    navigationView = new NavigationView({
+        element: document.getElementById('navigation')
+    });
 
     screenController.landingLayout();
 
-    document.getElementById('starter').addEventListener('click', e => {
-        e.target.blur();
-        screenController.lessonLayout();
+    const elements = document.querySelectorAll('.lesson-card');
+
+    Array.from(elements).forEach(function(element) {
+        element.addEventListener('click', evnt => {
+            const filename = evnt.currentTarget.getAttribute('data-filename');
+
+            screenController.lessonLayout(filename, evnt.currentTarget.querySelector('.lesson-number').textContent);
+        });
     });
 
     document.getElementById('exporter').addEventListener('click', e => {

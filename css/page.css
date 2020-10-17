@@ -2,6 +2,35 @@ html {
     background-color: #eee;
 }
 
+ul, nav {
+    list-style: square;
+}
+
+ol li {
+    list-style-type: none;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#navigation nav {
+    border-bottom: 1px solid black;
+}
+#navigation  ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+#navigation li {
+    display: inline-block;
+}
+#navigation  a::after {
+    display: inline-block;
+    color: #000;
+    content: '>';
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0 3px;
+}
+
 #lesson-container {
     width: auto;
     margin: 0 5%;
@@ -11,7 +40,55 @@ html {
     position: fixed;
     left: 0;
     bottom: 5em;
+}
 
+#lesson-select {
+    height: 500px;
+    overflow-y: scroll;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.lesson-card {
+    margin: 4px;
+    padding: 4px;
+    list-style-type: none;
+    cursor: pointer;
+    width: 140px;
+    height: 50px;
+    border-radius: 4px;
+    box-shadow: 2px 4px 8px #d4d4d4;
+    box-sizing: border-box;
+}
+
+.lesson-card:hover {
+    border: 1px solid #bebebe;
+}
+
+.lesson-card .lesson-number {
+    font-weight: bold;
+}
+.lesson-card .lesson-brief-result {
+}
+
+/** Levels **/
+.card-level-expert {
+    background-color: rgb(52, 203, 140);
+}
+.card-level-proficient {
+    background-color: rgb(52, 203, 140);
+}
+.card-level-competent {
+    background-color: rgb(77, 179, 225);
+}
+.card-level-advanced-beginner,
+.card-level-novice {
+    background-color: rgb(244, 177, 53);
+}
+.card-level-failed {
+    background-color: rgb(255, 99, 98);
 }
 
 .results-level {
@@ -31,6 +108,7 @@ html {
 .level-failed {
     color: rgb(255, 99, 98);
 }
+/* End levels */
 
 .keyboard {
     margin: 2em 0;
@@ -46,10 +124,6 @@ html {
 .typingLine {
     font-family: monospace, monospace;
     font-size: 2em;
-}
-
-ul, nav {
-    list-style: square;
 }
 
 #results-controls {

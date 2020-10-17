@@ -3,14 +3,19 @@ import LessonModel from './lesson-model.js';
 import LessonView from './lesson-view.js';
 import LessonStatsView from './lesson-stats-view.js';
 import LessonResultView from './lesson-result-view.js';
+import Statist from './statist.js';
+import Results from '../results/results.js';
+
+const results = new Results();
 
 class Lesson {
-    constructor({ file, element, layout, statist }) {
+    constructor({ file, element, layout }) {
         this.element = element;
         this.title = '';
         this.lines = [];
         this.layout = layout;
-        this.statist = statist;
+
+        this.statist = new Statist();
 
         const url = `https://raw.githubusercontent.com/abyr/typeggio-sources/master/${layout}/${file}`;
         // const url = `sources/${layout}/${file}`;
@@ -19,6 +24,8 @@ class Lesson {
         const fileName = parts[parts.length - 1];
 
         this.lessonNumber = fileName.replace(/^\w+-(\d+).txt/g, '$1');
+
+        // this.showResult();
 
         this.init({ url });
     }
@@ -73,9 +80,26 @@ class Lesson {
 
         this.dispatchFinishEvent();
 
+        this.showStatistResult();
+    }
+
+    showStatistResult() {
         this.resultView = new LessonResultView({
             element: this.element,
-            statist: this.statist
+            statist: this.statist,
+        });
+
+        this.resultView.render();
+    }
+
+    showResult() {
+        const key = this.layout + '-' + this.lessonNumber;
+        const lessonResult = results.getResult(key);
+
+        this.resultView = new LessonResultView({
+            element: this.element,
+            result: lessonResult,
+            statist: null,
         });
 
         this.resultView.render();
@@ -103,6 +127,8 @@ class Lesson {
 
         this.lessonStatsView.destroy();
         this.lessonStatsView = null;
+
+        this.statist = null;
     }
 
     start() {

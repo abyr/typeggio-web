@@ -28,6 +28,12 @@ class Results {
         vLink.click();
     }
 
+    getResult(key) {
+        const allResObj = this.getAll();
+
+        return allResObj[key] || null;
+    }
+
     getAll() {
         return this.storage.export();
     }

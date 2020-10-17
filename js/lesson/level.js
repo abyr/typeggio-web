@@ -46,9 +46,9 @@ function getLevel({
   const ratio = sumOfCriterias / criterias.length;
 
   if (ratio <= 0) {
-    return LEVELS_DEFINITION_MAP.fail;
+    return Object.assign({}, LEVELS_DEFINITION_MAP.fail);
   } else {
-    return Object.values(LEVELS_DEFINITION_MAP).find(x => x.ratio <= ratio);
+    return Object.assign({}, Object.values(LEVELS_DEFINITION_MAP).find(x => x.ratio <= ratio));
   }
 }
 
