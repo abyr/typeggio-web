@@ -56,18 +56,19 @@ ol li {
     padding: 4px;
     list-style-type: none;
     cursor: pointer;
-    width: 140px;
-    height: 50px;
+    width: 150px;
+    height: 60px;
     border-radius: 4px;
     box-shadow: 2px 4px 8px #d4d4d4;
     box-sizing: border-box;
 }
 
 .lesson-card:hover {
+    padding: 3px;
     border: 1px solid #bebebe;
 }
 
-.lesson-card .lesson-number {
+.lesson-card .lesson-title {
     font-weight: bold;
 }
 .lesson-card .lesson-brief-result {
