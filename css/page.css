@@ -111,6 +111,12 @@ ol li {
 }
 /* End levels */
 
+.legend-item {
+    padding: 4px;
+    margin: 0 5px;
+    border-radius: 4px;
+}
+
 .keyboard {
     margin: 2em 0;
 }

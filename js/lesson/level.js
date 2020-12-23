@@ -66,4 +66,8 @@ function countSpeedRatio(wpm) {
   }
 }
 
-export default { getLevel };
+function getLevelsDefinition() {
+  return Object.assign({}, LEVELS_DEFINITION_MAP);
+}
+
+export default { getLevel, getLevelsDefinition };

@@ -2,13 +2,13 @@ import Results from './results/results.js';
 import Lesson from './lesson/lesson.js';
 import level from './lesson/level.js';
 import NavigationView from './navigation-view.js';
+import LegendView from './lesson/legend-view.js';
 
 const layout = document.querySelector('#lesson-select').getAttribute('data-layout');
 const results = new Results();
 
 let lesson;
 let navigationView;
-let lessonsInfo;
 
 const screenController = {
 
@@ -148,6 +148,11 @@ window.onload = () => {
 
     screenController.landingLayout();
 
+    screenController.legendView = new LegendView({
+        element: document.querySelector('#landing-layout')
+    });
+    screenController.legendView.render();
+
     const elements = document.querySelectorAll('.lesson-card');
 
     Array.from(elements).forEach(function(element) {
@@ -158,7 +163,7 @@ window.onload = () => {
         });
     });
 
-    document.getElementById('exporter').addEventListener('click', e => {
+    document.getElementById('exporter').addEventListener('click', () => {
         results.export();
     });
 
