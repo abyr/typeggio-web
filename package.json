@@ -1,0 +1,27 @@
+{
+  "name": "typeggio-web",
+  "version": "1.0.0",
+  "description": "Typeggio Web App",
+  "main": "js/app.js",
+  "devDependencies": {
+    "eslint": "^7.14.0",
+    "http-server": "^0.12.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abyr/typeggio-web.git"
+  },
+  "keywords": [
+    "typing",
+    "lessons"
+  ],
+  "author": "Oleksandr Denysenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abyr/typeggio-web/issues"
+  },
+  "homepage": "https://github.com/abyr/typeggio-web#readme"
+}
