@@ -44,8 +44,8 @@ ol li {
 
 #lesson-select {
     height: 500px;
-    overflow-y: scroll;
-    width: 800px;
+    overflow-y: auto;
+    width: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
