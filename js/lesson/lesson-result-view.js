@@ -42,6 +42,10 @@ class LessonResultView {
 
         const wordsPerMinute = this.getWordsPerMinute();
 
+        const hardestLetter = this.getHardestLetter();
+
+        const { timesMisprinted } = this.getLetterDetail(hardestLetter);
+
         const myLevel = level.getLevel({
             misprintsCount,
             wordsPerMinute
@@ -52,6 +56,7 @@ class LessonResultView {
             <div class="results-spent-time">Spent time: ${spentTime}</div>
             <div class="results-wpm">Words per minute: ${wordsPerMinute}</div>
             <div class="results-misprints">Misprints: ${misprintsCount}</div>
+            <div class="results-wpm">Hardest letter: <b class="hardest-letter">${hardestLetter}</b>. It's misprinted ${timesMisprinted} times</div>
         `;
     }
 
@@ -67,11 +72,25 @@ class LessonResultView {
         return this.statist.getWordsPerMinute();
     }
 
+    getHardestLetter() {
+        const code = this.statist.getHardestCharCode();
+
+        return String.fromCharCode(code);
+    }
+
+    getLetterDetail(letter) {
+        const code = letter.charCodeAt(0);
+
+        const { timesMisprinted } = this.statist.getCharCodeDetail(code);
+
+        return { timesMisprinted };
+    }
+
     destroy() {
         const container = this.getContainer();
 
         while(container.firstChild) {
-            existingContainer.removeChild(existingContainer.firstChild);
+            container.removeChild(container.firstChild);
         }
     }
 }

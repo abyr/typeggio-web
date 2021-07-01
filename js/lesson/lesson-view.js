@@ -14,7 +14,6 @@ class LessonView {
 
         this.startTyping = false;
 
-        this.misprintedEvent = new CustomEvent('stats:misprinted', { detail: {} });
         this.startedEvent = new CustomEvent('stats:started', { detail: {} });
         this.finishedEvent = new CustomEvent('stats:finished', { detail: {} });
     }
@@ -71,7 +70,13 @@ class LessonView {
         const neededCode = this.textIterator.currentLineChar().charCodeAt();
 
         if (pressedCode !== neededCode) {
-            this.element.dispatchEvent(this.misprintedEvent);
+            const misprintedEvent = new CustomEvent('stats:misprinted', {
+                detail: {
+                    expectedCode: neededCode
+                }
+            });
+
+            this.element.dispatchEvent(misprintedEvent);
             return false;
         }
 

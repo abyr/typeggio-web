@@ -70,8 +70,10 @@ class Lesson {
         this.statist.startTimer();
     }
 
-    countMisprint() {
-        this.statist.addMisprint(1);
+    countMisprint(evnt) {
+        const { expectedCode } = evnt.detail;
+
+        this.statist.addMisprint({ expectedCode });
         this.lessonStatsView.render();
     }
 

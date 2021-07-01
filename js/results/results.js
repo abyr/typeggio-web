@@ -53,6 +53,8 @@ class Results {
             var json = JSON.parse(src);
 
             this.import(JSON.stringify(json, null, 4));
+
+            location.reload();
         };
         reader.readAsText(files[0]);
 

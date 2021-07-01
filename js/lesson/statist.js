@@ -1,9 +1,12 @@
 class Statist {
     constructor() {
-        this.misprintsCount = 0;
-
         this.startTime = null;
         this.endTime = null;
+
+        /**
+         * @private
+         */
+        this._expectedCodes = {};
     }
 
     export() {
@@ -14,8 +17,19 @@ class Statist {
         }
     }
 
-    addMisprint(q = 1) {
-        this.setMisprintsCount(this.getMisprintsCount() + q);
+    /**
+     *
+     * @param {String} c char
+     * @param {Number} q quantity
+     */
+    addMisprint({ expectedCode, typedCode }) {
+        const expectedCodeSum = this._expectedCodes[expectedCode] || 0;
+
+        this._expectedCodes[expectedCode] = expectedCodeSum + 1;
+
+        const typedCodeSum = this._typedCodes[typedCode] || 0;
+
+        this._typedCodes[typedCode] = typedCodeSum + 1;
     }
 
     reset() {
@@ -25,15 +39,14 @@ class Statist {
     }
 
     resetMisprints() {
-        this.setMisprintsCount(0);
-    }
-
-    setMisprintsCount(x) {
-        this.misprintsCount = x;
+        this._expectedCodes = {};
+        this._typedCodes = {};
     }
 
     getMisprintsCount() {
-        return this.misprintsCount;
+        const expectedSumValues = Object.values(this._expectedCodes).reduce((a, b) => a + b) || 0;
+
+        return expectedSumValues;
     }
 
     setWordsCount(x) {
@@ -70,6 +83,20 @@ class Statist {
 
     getWordsCount() {
         return this.wordsCount;
+    }
+
+    getHardestCharCode() {
+        const obj = this._expectedCodes;
+
+        const code = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b);
+
+        return code;
+    }
+
+    getCharCodeDetail(code) {
+        return {
+            timesMisprinted: this._expectedCodes[code]
+        }
     }
 
 }
