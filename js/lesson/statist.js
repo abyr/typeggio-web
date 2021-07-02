@@ -85,20 +85,9 @@ class Statist {
         return this.wordsCount;
     }
 
-    getHardestCharCode() {
-        const obj = this._expectedCodes;
-
-        const code = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b);
-
-        return code;
+    getMisprintsMap() {
+        return Object.assign({}, this._expectedCodes);
     }
-
-    getCharCodeDetail(code) {
-        return {
-            timesMisprinted: this._expectedCodes[code]
-        }
-    }
-
 }
 
 function getTime() {

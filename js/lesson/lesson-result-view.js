@@ -1,5 +1,6 @@
 import level from "./level.js";
 import duration from "../duration.js";
+import letters from '../letters.js';
 
 class LessonResultView {
     constructor({ element, statist }) {
@@ -42,21 +43,42 @@ class LessonResultView {
 
         const wordsPerMinute = this.getWordsPerMinute();
 
-        const hardestLetter = this.getHardestLetter();
-
-        const { timesMisprinted } = this.getLetterDetail(hardestLetter);
-
         const myLevel = level.getLevel({
             misprintsCount,
             wordsPerMinute
         });
+
+        const lettersHTML = this.getLettersHtml();
 
         return `
             <div class="results-level level-${myLevel.code}">${myLevel.title}</div>
             <div class="results-spent-time">Spent time: ${spentTime}</div>
             <div class="results-wpm">Words per minute: ${wordsPerMinute}</div>
             <div class="results-misprints">Misprints: ${misprintsCount}</div>
-            <div class="results-wpm">Hardest letter: <b class="hardest-letter">${hardestLetter}</b>. It's misprinted ${timesMisprinted} times</div>
+            ${lettersHTML}
+        `;
+    }
+
+    getLettersHtml() {
+        const lettersStats = this.statist.getMisprintsMap();
+
+        const sortableEntries = Object.entries(lettersStats);
+
+        sortableEntries.sort(function(a, b) {
+            return b[1] - a[1];
+        });
+
+        const sortedList = sortableEntries.map(x => {
+            const code = x[0];
+            const quantity = x[1];
+            const letter = letters.fromCharCode(code);
+
+            return `<div class="results-letter">${letter}: ${quantity}</div>`;
+        });
+
+        return `
+            <div class="results-misprints-header">Misprinted letters:</div>
+            ${sortedList.join('')}
         `;
     }
 
@@ -70,20 +92,6 @@ class LessonResultView {
 
     getWordsPerMinute() {
         return this.statist.getWordsPerMinute();
-    }
-
-    getHardestLetter() {
-        const code = this.statist.getHardestCharCode();
-
-        return String.fromCharCode(code);
-    }
-
-    getLetterDetail(letter) {
-        const code = letter.charCodeAt(0);
-
-        const { timesMisprinted } = this.statist.getCharCodeDetail(code);
-
-        return { timesMisprinted };
     }
 
     destroy() {

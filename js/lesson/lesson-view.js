@@ -1,6 +1,7 @@
 import Keyboard from './keyboard.js';
 import TypingHint from './typing-hint.js';
 import TextIterator from "./text-iterator.js";
+import letters from '../letters.js';
 
 /**
  * @fires LessonView#stats:started
@@ -112,7 +113,7 @@ class LessonView {
     renderKeyboard() {
         const nextChar = this.textIterator.currentLineChar();
 
-        this.keyboard.pressButton(charToCode(nextChar));
+        this.keyboard.pressButton(letters.charToCode(nextChar));
     }
 
     finish() {
@@ -127,31 +128,6 @@ class LessonView {
         while (this.element.firstChild) {
             this.element.removeChild(this.element.firstChild);
         }
-    }
-}
-
-const codesMap = {
-    "10": "enter",
-    "13": "enter",
-    "32": "space"
-};
-
-function charToCode(char) {
-    const initialCode = char.charCodeAt();
-    let code;
-
-    if (initialCode === 10) {
-        code = 13;
-    } else {
-        code = initialCode;
-    }
-
-    const specialCode = codesMap[code];
-
-    if (specialCode) {
-        return specialCode;
-    } else {
-        return char;
     }
 }
 
