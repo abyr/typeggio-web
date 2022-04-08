@@ -17,8 +17,7 @@ class Lesson {
 
         this.statist = new Statist();
 
-        const url = `https://raw.githubusercontent.com/abyr/typeggio-sources/master/${layout}/${file}`;
-        // const url = `sources/${layout}/${file}`;
+        const url = `sources/${layout}/${file}`;
 
         const parts = url.split('/');
         const fileName = parts[parts.length - 1];

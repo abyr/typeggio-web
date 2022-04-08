@@ -123,10 +123,9 @@ const screenController = {
     },
 
     setLayoutInfo: async function (layout) {
-        const infoURL = `https://raw.githubusercontent.com/abyr/typeggio-sources/master/${layout}/info.json`;
-
+        const infoURL = `sources/${layout}/info.json`;
+        
         const info = await fetch(infoURL);
-
         const infoJSON = await info.json();
 
         Object.keys(infoJSON.lessons).map(number => {
