@@ -6,8 +6,6 @@ import LessonResultView from './lesson-result-view.js';
 import Statist from './statist.js';
 import Results from '../results/results.js';
 
-const results = new Results();
-
 class Lesson {
     constructor({ file, element, layout }) {
         this.element = element;
@@ -94,6 +92,7 @@ class Lesson {
     }
 
     showResult() {
+        const results = new Results();
         const key = this.layout + '-' + this.lessonNumber;
         const lessonResult = results.getResult(key);
 

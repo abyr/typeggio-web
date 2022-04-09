@@ -1,4 +1,4 @@
-class Storage {
+class LocalDB {
     constructor() {
         this.engine = window.localStorage;
     }
@@ -29,4 +29,4 @@ class Storage {
     }
 }
 
-export default Storage;
+export default LocalDB;

@@ -50,7 +50,7 @@ class ResultsView {
                     <div><b>${x.id}</b></div>
                     <div>
                         ${Object.entries(x.result).map(x => {
-                            return `${x[0]}: ${x[1]} `
+                            return `${x[0]}: ${x[1]} `;
                         }).join(', ')}
                     </div>
                 </div>

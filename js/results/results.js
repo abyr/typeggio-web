@@ -1,17 +1,31 @@
-import Storage from '../storage.js';
+import LocalDB from '../storage/LocalDB.js';
+import LessonStatsStoreAdapter from '../storage-adapters/lesson-stats-storage-adapter.js';
 
 class Results {
 
-    constructor() {
-        this.storage = new Storage();
+    constructor() {}
+
+    async init() {
+        this.storageAdapter = new LessonStatsStoreAdapter();
+
+        await this.storageAdapter.connect();
     }
 
-    save(item, value) {
-        this.storage.setItem(item, JSON.stringify(value));
+    async save(item, value) {
+        // this.storage.setItem(item, JSON.stringify(value));
+        await this.storageAdapter.put(item, value);
     }
 
-    export() {
-        var exportData = this.getAll();
+    async getResult(key) {        
+        return await this.storageAdapter.get(key);
+    }
+
+    async getAll() {
+        return await this.storageAdapter.getAll();
+    }
+
+    async export() {        
+        var exportData = await this.storageAdapter.getAllMap();
 
         var _exportData = JSON.stringify(exportData , null, 4);
 
@@ -26,17 +40,7 @@ class Results {
         vLink.setAttribute('download', vName);
 
         vLink.click();
-    }
-
-    getResult(key) {
-        const allResObj = this.getAll();
-
-        return allResObj[key] || null;
-    }
-
-    getAll() {
-        return this.storage.export();
-    }
+    }    
 
     importFile(e) {
         var files = event.target.files;
@@ -48,16 +52,17 @@ class Results {
 
         var reader = new FileReader();
 
-        reader.onload = event => {
+        reader.onload = async event => {
             var src = event.target.result;
             var json = JSON.parse(src);
 
-            this.import(JSON.stringify(json, null, 4));
+            await this.storageAdapter.clear();
 
-            location.reload();
+            Object.values(json).forEach(async x => {
+                await this.storageAdapter.put(x.id, x);
+            });
         };
         reader.readAsText(files[0]);
-
     }
 
     import(rawString) {

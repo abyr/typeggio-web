@@ -1,7 +1,7 @@
 class LessonStatsView {
     constructor({ element, statist }) {
         this.element = element;
-        this.statist = statist
+        this.statist = statist;
     }
 
     render() {

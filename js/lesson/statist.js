@@ -44,7 +44,13 @@ class Statist {
     }
 
     getMisprintsCount() {
-        const expectedSumValues = Object.values(this._expectedCodes).reduce((a, b) => a + b) || 0;
+        const list = Object.values(this._expectedCodes);
+
+        if (list.length === 0) {
+            return 0;
+        }
+
+        const expectedSumValues = list.reduce((a, b) => a + b) || 0;
 
         return expectedSumValues;
     }

@@ -5,7 +5,7 @@ import NavigationView from './navigation-view.js';
 import LegendView from './lesson/legend-view.js';
 
 const layout = document.querySelector('#lesson-select').getAttribute('data-layout');
-const results = new Results();
+let results;
 
 let lesson;
 let navigationView;
@@ -13,7 +13,6 @@ let navigationView;
 const screenController = {
 
     landingLayout: () => {
-
         screenController.setLayoutInfo(layout);
 
         navigationView.setLinks([{
@@ -80,12 +79,17 @@ const screenController = {
         hideEl(landingSection);
     },
 
-    showResults: () => {
+    showResults: async () => {
         var lessonCards = document.querySelectorAll('.lesson-card');
 
-        Array.from(lessonCards).forEach(function(lessonCard) {
+        // warm up
+        const list = await results.getAll();
+
+        console.log('all fetched', list);
+
+        Array.from(lessonCards).forEach(async lessonCard => {
             const lessonNumber = lessonCard.getAttribute('data-lesson-number');
-            const lessonResult = screenController.getLessonResult(lessonNumber);
+            const lessonResult = await screenController.getLessonResult(lessonNumber);
 
             let resElement;
 
@@ -112,10 +116,10 @@ const screenController = {
         });
     },
 
-    getLessonResult: lessonNumber => {
+    getLessonResult: async lessonNumber => {
         const key = layout + '-' + lessonNumber;
 
-        return results.getResult(key);
+        return await results.getResult(key);
     },
 
     hideResultsControls: () => {
@@ -135,12 +139,17 @@ const screenController = {
                 q.innerHTML = infoJSON.lessons[number].title.replace('Lesson ', '');
             }
 
-        })
+        });
     }
 };
 
 
-window.onload = () => {
+window.onload = async () => {
+
+    results = new Results();
+
+    await results.init();
+
     navigationView = new NavigationView({
         element: document.getElementById('navigation')
     });
