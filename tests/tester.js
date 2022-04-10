@@ -12,7 +12,7 @@ const tester = {
 
     equals: function(expected, actual) {
         if (expected !== actual) {
-            throw new Error('assertEquals() "' + expected + '" != "' + actual + '"');
+            throw new Error('assertEquals() "' + expected + '" not equals "' + actual + '"');
         }
     }
 };

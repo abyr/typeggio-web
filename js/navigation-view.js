@@ -21,14 +21,13 @@ class NavigationView {
                         link.title
                     )}
                 </li>
-            `
+            `;
         });
 
         return `
             <nav>
                 <ol> ${results.join('')} </ol>
             </nav>
-
         `;
     }
 

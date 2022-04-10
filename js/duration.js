@@ -6,5 +6,4 @@ export default {
 
         return min + ":" + (sec < 10 ? '0' : '') + sec;
       }
-
-}
+};
