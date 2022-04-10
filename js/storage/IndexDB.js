@@ -26,25 +26,17 @@ class IDBStorage {
 
             openRequest.onerror = event => {
                 console.error('Database ready ERROR', event.target.errorCode);
-
                 reject(event.target.errorCode);
             };
 
             openRequest.onsuccess = event => {
-                console.log('Database ready OK', event.target.result);
-
                 this.db = openRequest.result;
-
                 resolve();
             };
 
             openRequest.onupgradeneeded = () => {
                 this.db = openRequest.result;
-
                 this.initStores(storeSchemasList);
-
-                console.log('Database is up to date');
-
             };
         });
     }
@@ -64,8 +56,6 @@ class IDBStorage {
     }
 
     initStore({ storeName, keyPath = 'id', indexList = [] }) {
-        console.log('init store', this.db, storeName, indexList);
-
         const store = this.db.createObjectStore(storeName, { keyPath });
 
         indexList.forEach(indexObject => {
@@ -101,14 +91,11 @@ class IDBStorage {
             const request = store.add(storeRecord);
 
             request.onsuccess = function () {
-              console.log('Add record OK', request.result);
-
               resolve(request.result);
             };
 
             request.onerror = function () {
-              console.log('Add record ERROR', request.error);
-
+              console.error('Add record ERROR', request.error);
               reject(request.error);
             };
         });
@@ -122,10 +109,6 @@ class IDBStorage {
     putRecord(storeName, recordObject) {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([storeName], "readwrite");
-
-            transaction.oncomplete = event => {
-                console.log('Database Transaction OK');
-            };
 
             transaction.onerror = event => {
                 console.error('Database Transaction ERROR');
@@ -142,14 +125,11 @@ class IDBStorage {
             const request = store.put(storeRecord);
 
             request.onsuccess = function () {
-              console.log('Add record OK', request.result);
-
               resolve(request.result);
             };
 
             request.onerror = function () {
-              console.log('Add record ERROR', request.error);
-
+              console.error('Add record ERROR', request.error);
               reject(request.error);
             };
         });
@@ -164,25 +144,19 @@ class IDBStorage {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([storeName], 'readonly');
 
-            transaction.oncomplete = event => {
-                console.log('Database Transaction OK');
-            };
-
             transaction.onerror = event => {
                 console.error('Database Transaction ERROR');
             };
 
             const store = transaction.objectStore(storeName);
 
-            console.log('db get', id);
             const request = store.get(id);
 
             request.onerror = function (error) {
                 reject(error);
             };
 
-            request.onsuccess = event => {
-                console.log('db res', id);
+            request.onsuccess = () => {
                 resolve(request.result);
             };
         });
@@ -196,10 +170,6 @@ class IDBStorage {
         return new Promise((resolve, reject) => {
 
             const transaction = this.db.transaction([storeName], 'readonly');
-
-            transaction.oncomplete = event => {
-                console.log('Database Transaction OK');
-            };
 
             transaction.onerror = event => {
                 console.error('Database Transaction ERROR');
@@ -237,15 +207,12 @@ class IDBStorage {
             const transaction = this.db.transaction([storeName], 'readwrite');
             const request = transaction.objectStore(storeName).delete(key);
 
-            transaction.oncomplete = event => {
-                console.log('Database Transaction OK');
-            };
-
             transaction.onerror = event => {
                 console.error('Database Transaction ERROR');
             };
 
             request.onerror = function (error) {
+                console.error(error);
                 reject(error);
             };
 
@@ -262,10 +229,6 @@ class IDBStorage {
     clear(storeName) {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([storeName], 'readwrite');
-
-            transaction.oncomplete = event => {
-                console.log('Database Transaction OK');
-            };
 
             transaction.onerror = event => {
                 console.error('Database Transaction ERROR');

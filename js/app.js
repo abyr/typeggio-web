@@ -85,8 +85,6 @@ const screenController = {
         // warm up
         const list = await results.getAll();
 
-        console.log('all fetched', list);
-
         Array.from(lessonCards).forEach(async lessonCard => {
             const lessonNumber = lessonCard.getAttribute('data-lesson-number');
             const lessonResult = await screenController.getLessonResult(lessonNumber);
@@ -127,7 +125,7 @@ const screenController = {
     },
 
     setLayoutInfo: async function (layout) {
-        const infoURL = `sources/${layout}/info.json`;
+        const infoURL = `./sources/${layout}/info.json`;
         
         const info = await fetch(infoURL);
         const infoJSON = await info.json();
@@ -178,7 +176,7 @@ window.onload = async () => {
     document.getElementById('importer').addEventListener('change', e => {
         results.importFile(e);
     });
-}
+};
 
 function saveLessonResult(evnt) {
     const { result, layout, lessonNumber } = evnt.detail;

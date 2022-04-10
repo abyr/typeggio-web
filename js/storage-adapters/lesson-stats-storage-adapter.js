@@ -16,12 +16,7 @@ class LessonStatsStoreAdapter {
 
     async connect() {
         const idb = new IDBStorage('typeggio');
-
-        console.log('start connect...');
-        
         const connected = await idb.connect([ this.schema ]);
-
-        console.log('...connected');
 
         this.idb = idb;
     }
@@ -67,14 +62,11 @@ class LessonStatsStoreAdapter {
                 return;
             }
 
-            console.log('get', lessonId);
-    
             this.idb.getRecord(this.schema.name, lessonId).then(res => {
                 if (!this._cache) {
                     this._cache = {};
                 }
                 this._putCache(lessonId, res);
-                console.log('resolve', lessonId, res);
                 resolve(res);
                 
             }).catch(err => {

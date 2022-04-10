@@ -302,11 +302,7 @@ Keyboard.prototype.getTypingHTML = function () {
 }
 
 Keyboard.prototype.getButtonClass = function (alias) {
-  const res = this.fnkToClassMap[alias] || "b" + alias;
-
-  // console.log('alias', alias, '=>', res);
-
-  return res;
+  return this.fnkToClassMap[alias] || "b" + alias;
 };
 
 Keyboard.prototype.pressButton = function (button, add) {
@@ -327,7 +323,7 @@ Keyboard.prototype.pressButton = function (button, add) {
   try {
     document.querySelectorAll('.' + className).addClass("active");
   } catch (ex) {
-    console.log('Class missed', '.' + className);
+    console.error('Class missed', '.' + className);
   }
 
   if (isCaseSensitive && button === upperButton) {
