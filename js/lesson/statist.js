@@ -14,7 +14,7 @@ class Statist {
             misprintsCount: this.getMisprintsCount(),
             spentTime: this.getSpentTime(),
             wpm: this.getWordsPerMinute()
-        }
+        };
     }
 
     /**

@@ -1,7 +1,8 @@
-import IDBStorage from '../storage/IndexDB.js';
-
-class LessonStatsStoreAdapter {
+import CacheableStorageAdapter from './cacheable-storage-adapter.js';
+class LessonStatsStoreAdapter extends CacheableStorageAdapter {
     constructor() {
+        super();
+        
         this.schema = {
             name: 'lesson-stats',
             keyPath: 'id',
@@ -10,15 +11,6 @@ class LessonStatsStoreAdapter {
                 fields: [ 'id' ]
             }]
         };
-
-        this._cache = null;
-    }
-
-    async connect() {
-        const idb = new IDBStorage('typeggio');
-        const connected = await idb.connect([ this.schema ]);
-
-        this.idb = idb;
     }
 
     /**
@@ -77,22 +69,6 @@ class LessonStatsStoreAdapter {
     }
 
     /**
-     * @param {String} lessonId 
-     * @returns {Object|undefined}
-     */
-    _getCached(lessonId) {
-        return this._cache && this._cache[lessonId];
-    }
-
-    _putCache(key, value) {
-        if (!this._cache) {
-            this._cache = {};
-        }
-
-        this._cache[key] = value;
-    }
-
-    /**
      * @returns {Promise}
      */
     getAll() {
@@ -128,16 +104,6 @@ class LessonStatsStoreAdapter {
             });
         });
     }
-
-    clear() {
-        this.invalidateCache();
-        return this.idb.clear(this.schema.name);
-    }
-
-    invalidateCache() {
-        this._cache = null;
-    }
-
 }
 
 export default LessonStatsStoreAdapter;
