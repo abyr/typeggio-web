@@ -3,7 +3,7 @@ import LessonModel from './lesson-model.js';
 import LessonView from './lesson-view.js';
 import LessonStatsView from './lesson-stats-view.js';
 import LessonResultView from './lesson-result-view.js';
-import Statist from './statist.js';
+import Statist from '../statist.js';
 import Results from '../results/results.js';
 
 class Lesson {
