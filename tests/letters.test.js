@@ -7,12 +7,12 @@ const filePath = fileURLToPath(import.meta.url);
 
 group(filePath, () => {
     test('char codes', () => {
-        tester.equals(letters.charToCode('.'), '.');
-        tester.equals(letters.charToCode('-'), '-');
-        tester.equals(letters.charToCode('1'), '1');
-        tester.equals(letters.charToCode('a'), 'a');
-        tester.equals(letters.charToCode('&'), '&');
-        tester.equals(letters.charToCode('\n'), 'enter');
-        tester.equals(letters.charToCode(' '), 'space');
+        tester.equal(letters.charToCode('.'), '.');
+        tester.equal(letters.charToCode('-'), '-');
+        tester.equal(letters.charToCode('1'), '1');
+        tester.equal(letters.charToCode('a'), 'a');
+        tester.equal(letters.charToCode('&'), '&');
+        tester.equal(letters.charToCode('\n'), 'enter');
+        tester.equal(letters.charToCode(' '), 'space');
     });
 });

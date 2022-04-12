@@ -7,6 +7,11 @@ class Statist {
          * @private
          */
         this._expectedCodes = {};
+
+        /**
+         * @private
+         */
+        this._typedCodes = {};
     }
 
     export() {

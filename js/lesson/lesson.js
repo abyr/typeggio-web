@@ -22,8 +22,6 @@ class Lesson {
 
         this.lessonNumber = fileName.replace(/^\w+-(\d+).txt/g, '$1');
 
-        // this.showResult();
-
         this.init({ url });
     }
 

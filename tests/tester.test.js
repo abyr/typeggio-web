@@ -12,8 +12,8 @@ export default group(`${filePath}: self test`, () => {
         tester.assert(!false);
     });
     test('equals', () => {        
-        tester.equals('1', '1');
-        tester.equals(true, !!1);
-        tester.equals(1, Number('1'));
+        tester.equal('1', '1');
+        tester.equal(true, !!1);
+        tester.equal(1, Number('1'));
     });
 });

@@ -27,32 +27,32 @@ group(filePath, () => {
         const levels = level.getLevelsDefinition();
         const AVERAGE_WPM = 44;
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: AVERAGE_WPM,
             misprintsCount: 20
         }).code, levels.fail.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: AVERAGE_WPM,
             misprintsCount: 15
         }).code, levels.novice.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: AVERAGE_WPM,
             misprintsCount: 10
         }).code, levels.advanced_beginner.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: AVERAGE_WPM,
             misprintsCount: 7
         }).code, levels.competent.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: AVERAGE_WPM,
             misprintsCount: 3
         }).code, levels.proficient.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: AVERAGE_WPM,
             misprintsCount: 0
         }).code, levels.expert.code);
@@ -62,27 +62,27 @@ group(filePath, () => {
         const levels = level.getLevelsDefinition();
         const SLOWER_WPM = 20;
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOWER_WPM,
             misprintsCount: 12
         }).code, levels.fail.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOWER_WPM,
             misprintsCount: 8
         }).code, levels.novice.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOWER_WPM,
             misprintsCount: 4
         }).code, levels.advanced_beginner.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOWER_WPM,
             misprintsCount: 2
         }).code, levels.competent.code);   
         
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOWER_WPM,
             misprintsCount: 0
         }).code, levels.competent.code);
@@ -93,22 +93,22 @@ group(filePath, () => {
         const levels = level.getLevelsDefinition();
         const SLOW_WPM = 10;
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOW_WPM,
             misprintsCount: 10
         }).code, levels.fail.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOW_WPM,
             misprintsCount: 8
         }).code, levels.novice.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOW_WPM,
             misprintsCount: 4
         }).code, levels.advanced_beginner.code);
 
-        qa.equals(level.getLevel({
+        qa.equal(level.getLevel({
             wordsPerMinute: SLOW_WPM,
             misprintsCount: 0
         }).code, levels.competent.code);        
