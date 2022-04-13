@@ -12,7 +12,7 @@ Keyboard.prototype.fnkToClassMapFactory = function (layout) {
   } else {
     return this.qwertyFnkToClassMap();
   }
-}
+};
 
 Keyboard.prototype.ruFnkToClassMap = function () {
   const qwerty = this.qwertyFnkToClassMap();
@@ -51,8 +51,8 @@ Keyboard.prototype.ruFnkToClassMap = function () {
     'ь': 'bm',
     'б': '',
     'ю': '',
-  })
-}
+  });
+};
 
 Keyboard.prototype.qwertyFnkToClassMap = function () {
   this.map = {
@@ -130,7 +130,7 @@ Keyboard.prototype.qwertyFnkToClassMap = function () {
 Keyboard.prototype.getHTML = function () {
   const html = this.layoutFactory(this.layout);
   return html;
-}
+};
 
 Keyboard.prototype.layoutFactory = function (layout) {
   if (layout === 'ru') {
@@ -138,7 +138,8 @@ Keyboard.prototype.layoutFactory = function (layout) {
   } else {
     return this.qwertyLayout();
   }
-}
+};
+
 Keyboard.prototype.ruLayout = function () {
   return `
       <div>
@@ -291,7 +292,7 @@ Keyboard.prototype.qwertyLayout = function () {
               <div class="button bctrlr">ctl</div>
           </div>
     </div>`;
-}
+};
 
 Keyboard.prototype.getTypingHTML = function () {
   return [
@@ -299,7 +300,7 @@ Keyboard.prototype.getTypingHTML = function () {
     '<span id="line" class="typeNext"></span>',
     '<span id="after"></span>'
   ].join('');
-}
+};
 
 Keyboard.prototype.getButtonClass = function (alias) {
   return this.fnkToClassMap[alias] || "b" + alias;

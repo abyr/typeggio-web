@@ -72,6 +72,26 @@ class CacheableStorageAdapter {
     }
 
     /**
+     * @returns {Promise}
+     */
+     getAll() {
+        return new Promise((resolve, reject) => {
+            this.idb.getAllRecords(this.schema.name).then(res => {
+                this._cache = res.reduce((map, x) => {
+                    map[x.id] = x;
+
+                    return map;
+                }, {});
+                resolve(res);
+
+            }).catch(err => {
+                console.error(err);
+                reject(err);
+            });
+        });
+    }
+
+    /**
      * @protected
      * @param {String} key
      * @returns {Object|undefined}

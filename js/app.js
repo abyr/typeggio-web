@@ -3,10 +3,11 @@ import Lesson from './lesson/lesson.js';
 import level from './lesson/level.js';
 import NavigationView from './navigation-view.js';
 import LegendView from './lesson/legend-view.js';
+import PreferrencesView from './preferrences-view.js';
 
 const layout = document.querySelector('#lesson-select').getAttribute('data-layout');
 let results;
-
+let preferrencesView;
 let lesson;
 let navigationView;
 
@@ -20,6 +21,7 @@ const screenController = {
         }]);
         navigationView.render();
 
+        screenController.showPreferrences();
         screenController.showLessons();
         screenController.showResults();
     },
@@ -39,6 +41,8 @@ const screenController = {
             element: document.getElementById('lesson-container'),
             file: lessonFile,
             layout
+        }, {
+            showKeyboard: preferrencesView.isShowKeyboard()
         });
 
         lesson.element.addEventListener('lesson:finished', saveLessonResult);
@@ -46,6 +50,7 @@ const screenController = {
     },
 
     clearLayout: () => {
+        screenController.hidePreferrences();
         screenController.hideResultsControls();
         screenController.hideLessons();
 
@@ -138,12 +143,18 @@ const screenController = {
             }
 
         });
+    },
+
+    showPreferrences: function () {
+        showEl(document.querySelector('#preferrences'));
+    },
+
+    hidePreferrences: function () {
+        hideEl(document.querySelector('#preferrences'));
     }
 };
 
-
 window.onload = async () => {
-
     results = new Results();
 
     await results.init();
@@ -151,6 +162,18 @@ window.onload = async () => {
     navigationView = new NavigationView({
         element: document.getElementById('navigation')
     });
+
+    const preferrencesEl = document.createElement('div');
+
+    preferrencesEl.id = 'preferrences';
+    document.getElementById('navigation').insertAdjacentElement('beforebegin', preferrencesEl);
+
+    preferrencesView = new PreferrencesView({
+        element: preferrencesEl
+    });
+
+    await preferrencesView.init();
+    preferrencesView.render();
 
     screenController.landingLayout();
 

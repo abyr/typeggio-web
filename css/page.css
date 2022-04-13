@@ -12,6 +12,14 @@ ol li {
     font-weight: bold;
 }
 
+.preferences-list {
+    list-style: none;
+}
+.preferences-list li {
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+
 #navigation nav {
     border-bottom: 1px solid black;
 }
@@ -119,6 +127,8 @@ ol li {
 
 .keyboard {
     margin: 2em 0;
+    display: flex;
+    justify-content: center;
 }
 
 #line {
@@ -131,6 +141,7 @@ ol li {
 .typingLine {
     font-family: monospace, monospace;
     font-size: 2em;
+    text-align: center;
 }
 
 #results-controls {

@@ -1,6 +1,6 @@
 class IDBStorage {
 
-    constructor(name, version = '4') {
+    constructor(name, version = 5) {
         this._name = name;
         this._version = version;
     }

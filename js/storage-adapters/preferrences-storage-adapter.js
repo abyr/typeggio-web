@@ -7,7 +7,10 @@ class PreferrencesStoreAdapter extends CacheableStorageAdapter {
         this.schema = {
             name: 'preferrences',
             keyPath: 'id',
-            indexes: []
+            indexes: [{
+                name: 'preferenceId',
+                fields: [ 'id' ]
+            }]
         };
     }
 }

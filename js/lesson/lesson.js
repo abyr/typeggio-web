@@ -7,11 +7,13 @@ import Statist from '../statist.js';
 import Results from '../results/results.js';
 
 class Lesson {
-    constructor({ file, element, layout }) {
+    constructor({ file, element, layout }, { showKeyboard }) {
         this.element = element;
         this.title = '';
         this.lines = [];
         this.layout = layout;
+
+        this.showKeyboard = showKeyboard;
 
         this.statist = new Statist();
 
@@ -47,7 +49,9 @@ class Lesson {
         });
 
         this.lessonModel = new LessonModel({ title, text });
-        this.view = new LessonView(this.element, this.lessonModel);
+        this.view = new LessonView(this.element, this.lessonModel, {
+            showKeyboard: this.showKeyboard
+        });
 
         this.countMisprint = this.countMisprint.bind(this);
         this.startLesson = this.startLesson.bind(this);

@@ -76,9 +76,11 @@ class LessonResultView {
             return `<div class="results-letter">${letter}: ${quantity}</div>`;
         });
 
+        const misprints = sortedList.length && sortedList.join('');
+
         return `
-            <div class="results-misprints-header">Misprinted letters:</div>
-            ${sortedList.join('')}
+            <div class="results-misprints-header">Misprinted letters:</div> 
+            ${misprints || 'none'}
         `;
     }
 

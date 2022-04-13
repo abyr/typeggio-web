@@ -1,4 +1,3 @@
-import LocalDB from '../storage/LocalDB.js';
 import LessonStatsStoreAdapter from '../storage-adapters/lesson-stats-storage-adapter.js';
 
 class Results {
@@ -12,7 +11,6 @@ class Results {
     }
 
     async save(item, value) {
-        // this.storage.setItem(item, JSON.stringify(value));
         await this.storageAdapter.put(item, value);
     }
 

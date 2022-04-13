@@ -1,14 +1,9 @@
-class NavigationView {
-    constructor({ element }) {
-        this.element = element;
-    }
+import View from "./view.js";
+
+class NavigationView extends View {
 
     setLinks(links) {
         this.links = links;
-    }
-
-    render() {
-        this.element.innerHTML = this.getHtml();
     }
 
     getHtml() {
@@ -29,12 +24,6 @@ class NavigationView {
                 <ol> ${results.join('')} </ol>
             </nav>
         `;
-    }
-
-    destroy() {
-        while(this.element.firstChild) {
-            existingContainer.removeChild(existingContainer.firstChild);
-        }
     }
 }
 

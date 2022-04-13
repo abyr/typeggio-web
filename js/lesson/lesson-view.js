@@ -9,9 +9,11 @@ import letters from '../letters.js';
  * @fires LessonView#stats:finished
  */
 class LessonView {
-    constructor(element, lessonModel) {
+    constructor(element, lessonModel, { showKeyboard }) {
         this.element = element;
         this.lesson = lessonModel;
+
+        this.showKeyboard = showKeyboard;
 
         this.startTyping = false;
 
@@ -37,6 +39,10 @@ class LessonView {
 
         keyboardEl.innerHTML = this.keyboard.getHTML();
         container.append(titleEl, keyboardEl, hintEl);
+
+        if (!this.showKeyboard) {
+            keyboardEl.classList.add('hidden');
+        }
 
         this.element.appendChild(container);
 
