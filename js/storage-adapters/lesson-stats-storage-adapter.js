@@ -3,14 +3,7 @@ class LessonStatsStoreAdapter extends CacheableStorageAdapter {
     constructor() {
         super();
         
-        this.schema = {
-            name: 'lesson-stats',
-            keyPath: 'id',
-            indexes: [{
-                name: 'lessonId',
-                fields: [ 'id' ]
-            }]
-        };
+        this.name = 'lesson-stats';
     }
 
     /**
@@ -26,7 +19,7 @@ class LessonStatsStoreAdapter extends CacheableStorageAdapter {
 
             this.invalidateCache();
 
-            this.idb.putRecord(this.schema.name, {
+            this.idb.putRecord(this.name, {
                 id,
                 misprintsCount,
                 spentTime,
@@ -54,7 +47,7 @@ class LessonStatsStoreAdapter extends CacheableStorageAdapter {
                 return;
             }
 
-            this.idb.getRecord(this.schema.name, lessonId).then(res => {
+            this.idb.getRecord(this.name, lessonId).then(res => {
                 if (!this._cache) {
                     this._cache = {};
                 }
@@ -70,7 +63,7 @@ class LessonStatsStoreAdapter extends CacheableStorageAdapter {
 
     getAllMap() {
         return new Promise((resolve, reject) => {
-            this.idb.getAllRecords(this.schema.name).then(res => {
+            this.idb.getAllRecords(this.name).then(res => {
                 this._cache = res.reduce((map, x) => {
                     map[x.id] = x;
 

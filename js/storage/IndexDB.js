@@ -1,16 +1,17 @@
+import dbData from "../storage-adapters/db-data.js";
 class IDBStorage {
 
-    constructor(name, version = 5) {
-        this._name = name;
-        this._version = version;
+    constructor() {
+        this._name = dbData.name;
+        this._version = dbData.version;
     }
 
     /**
      * @param {Array} storeSchemaList 
      * @returns {Promise}
      */
-    connect(storeSchemaList) {
-        return this.connectDB(storeSchemaList);
+    connect() {
+        return this.connectDB(dbData.schema);
     }
 
     /**
@@ -22,7 +23,7 @@ class IDBStorage {
             const idb = window.indexedDB || window.mozIndexedDB ||
                 window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
-            const openRequest = idb.open(this._name, this._version);
+            const openRequest = idb.open(this._name, this.version);
 
             openRequest.onerror = event => {
                 console.error('Database ready ERROR', event.target.errorCode);

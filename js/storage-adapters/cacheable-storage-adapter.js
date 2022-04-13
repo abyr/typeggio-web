@@ -6,18 +6,17 @@ class CacheableStorageAdapter {
         /**
          * @protected
          */
-        this._cache = null;
+         this.name = undefined;
 
-        this.schema = {
-            name: undefined,
-            keyPath: 'id',
-            indexes: []
-        };
+        /**
+         * @protected
+         */
+        this._cache = null;
     }
 
     async connect() {
         const idb = new IDBStorage('typeggio');
-        await idb.connect([ this.schema ]);
+        await idb.connect();
 
         this.idb = idb;
     }
@@ -31,7 +30,7 @@ class CacheableStorageAdapter {
         return new Promise((resolve, reject) => {
             this.invalidateCache();
 
-            this.idb.putRecord(this.schema.name, {
+            this.idb.putRecord(this.name, {
                 id: key,
                 value
             }).then(res => {
@@ -57,7 +56,7 @@ class CacheableStorageAdapter {
                 return;
             }
 
-            this.idb.getRecord(this.schema.name, key).then(res => {
+            this.idb.getRecord(this.name, key).then(res => {
                 if (!this._cache) {
                     this._cache = {};
                 }
@@ -76,7 +75,7 @@ class CacheableStorageAdapter {
      */
      getAll() {
         return new Promise((resolve, reject) => {
-            this.idb.getAllRecords(this.schema.name).then(res => {
+            this.idb.getAllRecords(this.name).then(res => {
                 this._cache = res.reduce((map, x) => {
                     map[x.id] = x;
 
@@ -115,7 +114,7 @@ class CacheableStorageAdapter {
 
     clear() {
         this.invalidateCache();
-        return this.idb.clear(this.schema.name);
+        return this.idb.clear(this.name);
     }
 
     invalidateCache() {
