@@ -1,7 +1,7 @@
 class ChildView {
-    constructor({ element }) {
+    constructor({ parentElement }) {
         
-        this.element = element;
+        this.parentElement = parentElement;
 
         this.containerId = undefined; 
     }
@@ -28,7 +28,7 @@ class ChildView {
 
         c.id = this.containerId;
 
-        this.element.appendChild(c);
+        this.parentElement.appendChild(c);
 
         return c;
     }

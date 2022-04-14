@@ -178,7 +178,7 @@ window.onload = async () => {
     screenController.landingLayout();
 
     screenController.legendView = new LegendView({
-        element: document.querySelector('#landing-layout')
+        parentElement: document.querySelector('#landing-layout')
     });
     screenController.legendView.render();
 

@@ -2,8 +2,8 @@ import ChildView from './child-view.js';
 import level from './lesson/level.js';
 
 class LegendView extends ChildView {
-    constructor({ element }) {
-        super({ element });
+    constructor({ parentElement }) {
+        super({ parentElement });
         this.containerId = 'legend-container';
     }
 

@@ -44,7 +44,7 @@ class Lesson {
         this.statist.setWordsCount(wordsCount);
 
         this.lessonStatsView = new LessonStatsView({
-            element: this.element,
+            parentElement: this.element,
             statist: this.statist
         });
 
@@ -92,7 +92,7 @@ class Lesson {
 
     showStatistResult() {
         this.resultView = new LessonResultView({
-            element: this.element,
+            parentElement: this.element,
             statist: this.statist,
         });
 
@@ -105,7 +105,7 @@ class Lesson {
         const lessonResult = results.getResult(key);
 
         this.resultView = new LessonResultView({
-            element: this.element,
+            parentElement: this.element,
             result: lessonResult,
             statist: null,
         });

@@ -4,8 +4,8 @@ import duration from "../duration.js";
 import letters from '../letters.js';
 
 class LessonResultView extends ChildView {
-    constructor({ element, statist }) {
-        super({ element });
+    constructor({ parentElement, statist }) {
+        super({ parentElement });
 
         this.statist = statist;
         this.containerId = 'results-container';
