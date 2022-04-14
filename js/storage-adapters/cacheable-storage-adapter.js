@@ -15,7 +15,7 @@ class CacheableStorageAdapter {
     }
 
     async connect() {
-        const idb = new IDBStorage('typeggio');
+        const idb = new IDBStorage();
         await idb.connect();
 
         this.idb = idb;

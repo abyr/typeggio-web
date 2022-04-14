@@ -4,7 +4,7 @@ import LessonView from './lesson-view.js';
 import LessonStatsView from './lesson-stats-view.js';
 import LessonResultView from './lesson-result-view.js';
 import Statist from '../statist.js';
-import Results from '../results/results.js';
+import Results from '../results.js';
 
 class Lesson {
     constructor({ file, element, layout }, { showKeyboard }) {

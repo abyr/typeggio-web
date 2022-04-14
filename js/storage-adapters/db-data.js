@@ -1,14 +1,11 @@
-const schemaList = [
-    {
+const schemaList = [{
         name: 'lesson-stats',
         keyPath: 'id',
         indexes: [{
             name: 'lessonId',
             fields: [ 'id' ]
         }]
-    },
-
-    {
+    }, {
         name: 'preferrences',
         keyPath: 'id',
         indexes: [{

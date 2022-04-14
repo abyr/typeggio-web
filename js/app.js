@@ -1,4 +1,4 @@
-import Results from './results/results.js';
+import Results from './results.js';
 import Lesson from './lesson/lesson.js';
 import level from './lesson/level.js';
 import NavigationView from './navigation-view.js';

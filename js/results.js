@@ -1,4 +1,4 @@
-import LessonStatsStoreAdapter from '../storage-adapters/lesson-stats-storage-adapter.js';
+import LessonStatsStoreAdapter from './storage-adapters/lesson-stats-storage-adapter.js';
 
 class Results {
 
