@@ -2,7 +2,7 @@ import Results from './results.js';
 import Lesson from './lesson/lesson.js';
 import level from './lesson/level.js';
 import NavigationView from './navigation-view.js';
-import LegendView from './lesson/legend-view.js';
+import LegendView from './legend-view.js';
 import PreferrencesView from './preferrences-view.js';
 
 const layout = document.querySelector('#lesson-select').getAttribute('data-layout');

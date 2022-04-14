@@ -1,38 +1,14 @@
+import ChildView from '../child-view.js';
 import level from "./level.js";
 import duration from "../duration.js";
 import letters from '../letters.js';
 
-class LessonResultView {
+class LessonResultView extends ChildView {
     constructor({ element, statist }) {
-        this.element = element;
+        super({ element });
+
         this.statist = statist;
-
         this.containerId = 'results-container';
-    }
-
-    render() {
-        this.element.innerHTML = this.getHtml();
-    }
-
-    getContainer() {
-        const c = document.getElementById(this.containerId);
-
-        if (c) {
-            return c;
-
-        } else {
-            return this.makeContainer();
-        }
-    }
-
-    makeContainer() {
-        const c = document.createElement("div");
-
-        c.id = this.containerId;
-
-        this.element.appendChild(c);
-
-        return c;
     }
 
     getHtml() {
@@ -94,14 +70,6 @@ class LessonResultView {
 
     getWordsPerMinute() {
         return this.statist.getWordsPerMinute();
-    }
-
-    destroy() {
-        const container = this.getContainer();
-
-        while(container.firstChild) {
-            container.removeChild(container.firstChild);
-        }
     }
 }
 

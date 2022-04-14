@@ -24,6 +24,8 @@ class LessonView {
     render(layout) {
         const container = document.createElement("div");
 
+        container.id = 'lesson';
+
         const titleEl = document.createElement("h2");
         const hintEl = document.createElement("div");
         const keyboardEl = document.createElement("div");

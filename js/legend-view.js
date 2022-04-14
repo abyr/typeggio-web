@@ -1,36 +1,10 @@
-import level from './level.js';
+import ChildView from './child-view.js';
+import level from './lesson/level.js';
 
-class LegendView {
+class LegendView extends ChildView {
     constructor({ element }) {
-        this.element = element;
+        super({ element });
         this.containerId = 'legend-container';
-    }
-
-    render() {
-        const c = this.getContainer();
-
-        c.innerHTML = this.getHtml();
-    }
-
-    getContainer() {
-        const c = document.getElementById(this.containerId);
-
-        if (c) {
-            return c;
-
-        } else {
-            return this.makeContainer();
-        }
-    }
-
-    makeContainer() {
-        const c = document.createElement("div");
-
-        c.id = this.containerId;
-
-        this.element.appendChild(c);
-
-        return c;
     }
 
     getHtml() {
@@ -51,8 +25,6 @@ class LegendView {
 
         return 'Levels: <span>' + items.join(' ') + '</span>';
     }
-
-    destroy() {}
 }
 
 export default LegendView;

@@ -49,7 +49,7 @@ class Lesson {
         });
 
         this.lessonModel = new LessonModel({ title, text });
-        this.view = new LessonView(this.element, this.lessonModel, {
+        this.lessonView = new LessonView(this.element, this.lessonModel, {
             showKeyboard: this.showKeyboard
         });
 
@@ -80,6 +80,12 @@ class Lesson {
         this.statist.endTimer();
 
         this.dispatchFinishEvent();
+
+        this.lessonView.destroy();
+        this.lessonView = null;
+
+        this.lessonStatsView.destroy();
+        this.lessonStatsView = null;
 
         this.showStatistResult();
     }
@@ -124,17 +130,20 @@ class Lesson {
         this.element.removeEventListener('stats:started', this.startLesson);
         this.element.removeEventListener('stats:finished', this.finishLesson);
 
-        this.view.destroy();
-        this.view = null;
+        this.resultView.destroy();
+        this.resultView = null;
 
         this.lessonStatsView.destroy();
         this.lessonStatsView = null;
+
+        this.lessonView.destroy();
+        this.lessonView = null;
 
         this.statist = null;
     }
 
     start() {
-        this.view.render(this.layout);
+        this.lessonView.render(this.layout);
     }
 
 }

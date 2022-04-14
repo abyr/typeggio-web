@@ -1,34 +1,11 @@
-class LessonStatsView {
+import ChildView from '../child-view.js';
+
+class LessonStatsView extends ChildView {
     constructor({ element, statist }) {
-        this.element = element;
+        super({ element });
+
         this.statist = statist;
-    }
-
-    render() {
-        const c = this.getContainer();
-
-        c.innerHTML = this.getHtml();
-    }
-
-    getContainer() {
-        const c = document.getElementById("lesson-stats-container");
-
-        if (c) {
-            return c;
-
-        } else {
-            return this.makeContainer();
-        }
-    }
-
-    makeContainer() {
-        const c = document.createElement("div");
-
-        c.id = "lesson-stats-container";
-
-        this.element.appendChild(c);
-
-        return c;
+        this.containerId = 'lesson-stats-container';
     }
 
     getHtml() {
@@ -38,8 +15,6 @@ class LessonStatsView {
     getMisprintsCount() {
         return this.statist.getMisprintsCount();
     }
-
-    destroy() {}
 }
 
 export default LessonStatsView;
