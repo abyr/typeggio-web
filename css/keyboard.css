@@ -1,10 +1,11 @@
 :root {
     --kb-btn-bg: #000000;
     --kb-btn-color: #ffffff;
-    --kb-btn-border: black;
-    --kb-btn-active-color: black;
+    --kb-btn-border: #000000;
+    --kb-btn-active-color: #000000;
     --kb-btn-active-bg: #ffffff;
     --kb-btn-hint-bg: #333333;
+
 }
 .keyboard {
     display: -webkit-flex;

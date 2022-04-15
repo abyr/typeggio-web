@@ -27,7 +27,9 @@ class LessonResultView extends ChildView {
         const lettersHTML = this.getLettersHtml();
 
         return `
-            <div class="results-level level-${myLevel.code}">${myLevel.title}</div>
+            <div class="results-level">
+                <span class="legend-item card-level-${myLevel.code}">${myLevel.title}</span>
+            </div>
             <div class="results-spent-time">Spent time: ${spentTime}</div>
             <div class="results-wpm">Words per minute: ${wordsPerMinute}</div>
             <div class="results-misprints">Misprints: ${misprintsCount}</div>

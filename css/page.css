@@ -1,6 +1,17 @@
+/** Themes **/
 html {
-    background-color: #eee;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
 }
+body.theme-bright {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+body.theme-warm {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+/** End Themes **/
 
 ul, nav {
     list-style: square;
@@ -12,6 +23,13 @@ ol li {
     font-weight: bold;
 }
 
+button {
+    font-size: 1em;
+    border-radius: 4px;
+    padding: 8px;
+    min-width: 80px;
+}
+
 .preferences-list {
     list-style: none;
 }
@@ -20,6 +38,9 @@ ol li {
     margin: 0 10px 0 0;
 }
 
+#navigation {
+    margin: 10px 0;
+}
 #navigation nav {
     border-bottom: 1px solid black;
 }
@@ -79,43 +100,47 @@ ol li {
 .lesson-card .lesson-title {
     font-weight: bold;
 }
-.lesson-card .lesson-brief-result {
-}
 
 /** Levels **/
 .card-level-expert {
-    background-color: rgb(52, 203, 140);
+    background-color: var(--level-expert);
 }
 .card-level-proficient {
-    background-color: rgb(52, 203, 140);
+    background-color: var(--level-proficient);
 }
 .card-level-competent {
-    background-color: rgb(77, 179, 225);
+    background-color: var(--level-competent);
 }
-.card-level-advanced-beginner,
+.card-level-advanced-beginner {
+    background-color: var(--level-advanced-beginner);
+}
 .card-level-novice {
-    background-color: rgb(244, 177, 53);
+    background-color: var(--level-novice);
 }
 .card-level-failed {
-    background-color: rgb(255, 99, 98);
+    background-color: var(--level-failed);
 }
 
 .results-level {
     font-size: 2em;
 }
-.level-expert,
+.level-expert {
+    color: var(--level-expert);
+}
 .level-proficient {
-    color: rgb(52, 203, 140);
+    color: var(--level-proficient);
 }
 .level-competent {
-    color: rgb(77, 179, 225);
+    color: var(--level-competent);
 }
-.level-advanced-beginner,
+.level-advanced-beginner {
+    color: var(--level-advanced-beginner);
+}
 .level-novice {
-    color: rgb(244, 177, 53);
+    color: var(--level-novice);
 }
 .level-failed {
-    color: rgb(255, 99, 98);
+    color: var(--level-failed);
 }
 /* End levels */
 
@@ -123,6 +148,13 @@ ol li {
     padding: 4px;
     margin: 0 5px;
     border-radius: 4px;
+}
+
+#results-container .results-level {
+    margin: 8px 0;
+}
+#results-container .results-level .legend-item {
+    margin: 4px 0;
 }
 
 .keyboard {
@@ -150,6 +182,10 @@ ol li {
     left: 0;
     width: 100%;
     padding: 10px;
+}
+
+.lesson-controls {
+    text-align: center;
 }
 
 #footer {
