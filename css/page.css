@@ -30,12 +30,25 @@ button {
     min-width: 80px;
 }
 
-.preferences-list {
+.preferrences-list {
     list-style: none;
 }
-.preferences-list li {
+.preferrences-list .preferrence {
     display: inline-block;
     margin: 0 10px 0 0;
+}
+
+.preferrence {
+    margin: 0 8px 0 0;
+}
+.preferrence input {
+    margin: 0 4px 0 0;
+}
+.preferrence select {
+    margin: 0 0 0 4px;
+}
+.preferrence label {
+    cursor: pointer;
 }
 
 #navigation {
