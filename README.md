@@ -1,13 +1,17 @@
 # typeggio-web
 
-- [X] [Qwerty](https://abyr.github.io/typeggio-web/qwerty.html)
-- [X] [RU](https://abyr.github.io/typeggio-web/ru.html)
+DEMO https://abyr.github.io/typeggio-web/index.html
+
+Layouts:
+- [X] Qwerty
+- [X] UA
+- [X] RU
 
 # Sources
 
 https://github.com/abyr/typeggio-sources
 
-# Run local 
+# Run local
 
 ```bash
 npm i
