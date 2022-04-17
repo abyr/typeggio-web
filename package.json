@@ -1,6 +1,6 @@
 {
   "name": "typeggio-web",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Typeggio Web App",
   "type": "module",
   "main": "js/app.js",
