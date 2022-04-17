@@ -26,11 +26,8 @@ class LessonView {
 
         container.id = 'lesson';
 
-        const titleEl = document.createElement("h2");
         const hintEl = document.createElement("div");
         const keyboardEl = document.createElement("div");
-
-        titleEl.innerHTML = this.lesson.getTitle();
 
         this.keyboard = new Keyboard(layout);
 
@@ -40,7 +37,7 @@ class LessonView {
         keyboardEl.classList.add('keyboard');
 
         keyboardEl.innerHTML = this.keyboard.getHTML();
-        container.append(titleEl, keyboardEl, hintEl);
+        container.append(keyboardEl, hintEl);
 
         if (!this.showKeyboard) {
             keyboardEl.classList.add('hidden');
