@@ -30,10 +30,21 @@ class LessonResultView extends ChildView {
             <div class="results-level">
                 <span class="legend-item card-level-${myLevel.code}">${myLevel.title}</span>
             </div>
-            <div class="results-spent-time">Spent time: ${spentTime}</div>
-            <div class="results-wpm">Words per minute: ${wordsPerMinute}</div>
-            <div class="results-misprints">Misprints: ${misprintsCount}</div>
-            ${lettersHTML}
+            <div class="results-spent-time">
+                Spent time: ${spentTime}
+            </div>
+            <div class="results-wpm">
+                Words per minute: ${wordsPerMinute}
+            </div>
+            <div class="results-misprints">
+                Misprints: ${misprintsCount}
+            </div>
+            <div>
+                ${lettersHTML}
+            </div>
+            <div>
+                <a href="./index.html" class="btn" autofocus>Back</a>
+            </div>
         `;
     }
 
@@ -57,7 +68,7 @@ class LessonResultView extends ChildView {
         const misprints = sortedList.length && sortedList.join('');
 
         return `
-            <div class="results-misprints-header">Misprinted letters:</div> 
+            <div class="results-misprints-header">Misprinted letters:</div>
             ${misprints || 'none'}
         `;
     }
