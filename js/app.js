@@ -72,6 +72,7 @@ const screenController = {
 
             cardEl.classList.add('lesson-card');
             cardEl.setAttribute('data-lesson-number', number);
+            cardEl.setAttribute('tabindex', '0');
 
             const titleEl = document.createElement('div');
 
