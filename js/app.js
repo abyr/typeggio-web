@@ -92,6 +92,14 @@ const screenController = {
                 screenController.lessonLayout(fileName, evnt.currentTarget.querySelector('.lesson-title').textContent);
             });
 
+            cardEl.addEventListener('keypress', evnt => {
+                if (e.key === 'Enter') {
+                    const fileName = `lesson-${String(number).padStart(2, '0')}.txt`;
+
+                    screenController.lessonLayout(fileName, evnt.currentTarget.querySelector('.lesson-title').textContent);
+                }
+            });
+
             lessonCardsContainer.append(cardEl);
 
         });
