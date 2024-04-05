@@ -5,7 +5,6 @@ DEMO https://abyr.github.io/typeggio-web/index.html
 Layouts:
 - [X] Qwerty
 - [X] UA
-- [X] RU
 
 # Sources
 

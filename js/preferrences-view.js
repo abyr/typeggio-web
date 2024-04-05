@@ -5,13 +5,11 @@ const SHOW_KEYBOARD_KEY = 'showKeyboard';
 const LAYOUT_KEY = 'layout';
 
 const QWERTY_LAYOUT_VALUE = 'qwerty';
-const RU_LAYOUT_VALUE = 'ru';
 const UA_LAYOUT_VALUE = 'ua';
 
 const layouts = [
     QWERTY_LAYOUT_VALUE,
     UA_LAYOUT_VALUE,
-    RU_LAYOUT_VALUE
 ];
 
 const prefsTitleMap = {};
