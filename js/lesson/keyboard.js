@@ -2,7 +2,6 @@ var Keyboard;
 
 const QWERTY_LAYOUT = 'qwerty';
 const UA_LAYOUT = 'ua';
-const RU_LAYOUT = 'ru';
 
 Keyboard = function (layout = QWERTY_LAYOUT) {
   this.layout = layout;
@@ -13,8 +12,6 @@ Keyboard = function (layout = QWERTY_LAYOUT) {
 Keyboard.prototype.fnkToClassMapFactory = function (layout) {
   if (layout === UA_LAYOUT) {
     return this.uaFnkToClassMap();
-  } else if (layout === RU_LAYOUT) {
-    return this.ruFnkToClassMap();
   } else {
     return this.qwertyFnkToClassMap();
   }
@@ -53,46 +50,6 @@ Keyboard.prototype.uaFnkToClassMap = function () {
     'с': 'bc',
     'м': 'bv',
     'і': 'bb',
-    'т': 'bn',
-    'ь': 'bm',
-    'б': '',
-    'ю': '',
-  });
-};
-
-Keyboard.prototype.ruFnkToClassMap = function () {
-  const qwerty = this.qwertyFnkToClassMap();
-
-  return Object.assign({}, qwerty, {
-    'й': 'bq',
-    'ц': 'bw',
-    'у': 'be',
-    'к': 'br',
-    'е': 'bt',
-    'н': 'by',
-    'г': 'bu',
-    'ш': 'bi',
-    'щ': 'bo',
-    'з': 'bp',
-    'х': '',
-    'ъ': '',
-    'ё': '',
-    'ф': 'ba',
-    'ы': 'bs',
-    'в': 'bd',
-    'а': 'bf',
-    'п': 'bg',
-    'р': 'bh',
-    'о': 'bj',
-    'л': 'bk',
-    'д': 'bl',
-    'ж': '',
-    'э': '',
-    'я': 'bz',
-    'ч': 'bx',
-    'с': 'bc',
-    'м': 'bv',
-    'и': 'bb',
     'т': 'bn',
     'ь': 'bm',
     'б': '',
@@ -181,8 +138,6 @@ Keyboard.prototype.getHTML = function () {
 Keyboard.prototype.layoutFactory = function (layout) {
   if (layout === UA_LAYOUT) {
     return this.uaLayout();
-  } else if (layout === RU_LAYOUT) {
-    return this.ruLayout();
   } else {
     return this.qwertyLayout();
   }
@@ -245,83 +200,6 @@ Keyboard.prototype.uaLayout = function () {
               <div class="button bc">С</div>
               <div class="button bv">М</div>
               <div class="button bb">І</div>
-              <div class="button bn">Т</div>
-              <div class="button bm">Ь</div>
-              <div class="button bcomma">Б</div>
-              <div class="button bpoint">Ю</div>
-              <div class="button bslash">/<sub>?</sub></div>
-              <div class="button bshiftr jumper">shift</div>
-          </div>
-          <div class="row">
-              <div class="button bctrl">ctl</div>
-              <div class="button bfn">fn</div>
-              <div class="button bwin">opt</div>
-              <div class="button balt">alt</div>
-              <div class="button bspace jumper">space</div>
-              <div class="button baltr">alt</div>
-              <div class="button bmenu">opt</div>
-              <div class="button bctrlr">ctl</div>
-          </div>
-    </div>`;
-};
-
-Keyboard.prototype.ruLayout = function () {
-  return `
-      <div>
-          <div class="row">
-              <div class="button btilda">\`<sub>~</sub></div>
-              <div class="button b1">1<sub>!</sub></div>
-              <div class="button b2">2<sub>"</sub></div>
-              <div class="button b3">3<sub>№</sub></div>
-              <div class="button b4">4<sub>%</sub></div>
-              <div class="button b5">5<sub>:</sub></div>
-              <div class="button b6">6<sub>,</sub></div>
-              <div class="button b7">7<sub>.</sub></div>
-              <div class="button b8">8<sub>;</sub></div>
-              <div class="button b9">9<sub>(</sub></div>
-              <div class="button b0">0<sub>)</sub></div>
-              <div class="button bminus">-<sub>_</sub></div>
-              <div class="button bplus">+<sub>+</sub></div>
-              <div class="button jumper">back</div>
-          </div>
-          <div class="row">
-              <div class="button jumper">tab</div>
-              <div class="button bq">Й</div>
-              <div class="button bw">Ц</div>
-              <div class="button be">У</div>
-              <div class="button br">К</div>
-              <div class="button bt">Е</div>
-              <div class="button by">Н</div>
-              <div class="button bu">Г</div>
-              <div class="button bi">Ш</div>
-              <div class="button bo">Щ</div>
-              <div class="button bp">З</div>
-              <div class="button bsqbro">Х</div>
-              <div class="button bscbrc">Ъ</div>
-              <div class="button jumper">Ё</div>
-          </div>
-          <div class="row">
-              <div class="button jumper">caps lock</div>
-              <div class="button ba">Ф</div>
-              <div class="button bs">Ы</div>
-              <div class="button bd">В</div>
-              <div class="button bf helper">А</div>
-              <div class="button bg">П</div>
-              <div class="button bh">Р</div>
-              <div class="button bj helper">О</div>
-              <div class="button bk">Л</div>
-              <div class="button bl">Д</div>
-              <div class="button bsemicolon">Ж</div>
-              <div class="button bapostrophe">Э</div>
-              <div class="button benter jumper">enter</div>
-          </div>
-          <div class="row">
-              <div class="button bshift jumper">shift</div>
-              <div class="button bz">Я</div>
-              <div class="button bx">Ч</div>
-              <div class="button bc">С</div>
-              <div class="button bv">М</div>
-              <div class="button bb">И</div>
               <div class="button bn">Т</div>
               <div class="button bm">Ь</div>
               <div class="button bcomma">Б</div>
