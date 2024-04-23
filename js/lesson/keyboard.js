@@ -35,11 +35,11 @@ Keyboard.prototype.uaFnkToClassMap = function () {
     'ш': 'bi',
     'щ': 'bo',
     'з': 'bp',
-    'х': '',
-    'ї': '',
+    'х': 'bsqbro',
+    'ї': 'bscbrc',
     'ґ': '',
     'ф': 'ba',
-    'и': 'bs',
+    'и': 'bb',
     'в': 'bd',
     'а': 'bf',
     'п': 'bg',
@@ -47,17 +47,17 @@ Keyboard.prototype.uaFnkToClassMap = function () {
     'о': 'bj',
     'л': 'bk',
     'д': 'bl',
-    'ж': '',
-    'є': '',
+    'ж': 'bsemicolon',
+    'є': 'bapostrophe',
     'я': 'bz',
     'ч': 'bx',
     'с': 'bc',
     'м': 'bv',
-    'і': 'bb',
+    'і': 'bs',
     'т': 'bn',
     'ь': 'bm',
-    'б': '',
-    'ю': '',
+    'б': 'bcomma',
+    'ю': 'bpoint[',
   });
 };
 
@@ -163,7 +163,7 @@ Keyboard.prototype.uaLayout = function () {
               <div class="button b9">9<sub>(</sub></div>
               <div class="button b0">0<sub>)</sub></div>
               <div class="button bminus">-<sub>_</sub></div>
-              <div class="button bplus">+<sub>+</sub></div>
+              <div class="button bplus">+<sub>=</sub></div>
               <div class="button jumper">back</div>
           </div>
           <div class="row">
@@ -185,7 +185,7 @@ Keyboard.prototype.uaLayout = function () {
           <div class="row">
               <div class="button jumper">caps lock</div>
               <div class="button ba">Ф</div>
-              <div class="button bs">И</div>
+              <div class="button bs">І</div>
               <div class="button bd">В</div>
               <div class="button bf helper">А</div>
               <div class="button bg">П</div>
@@ -203,7 +203,7 @@ Keyboard.prototype.uaLayout = function () {
               <div class="button bx">Ч</div>
               <div class="button bc">С</div>
               <div class="button bv">М</div>
-              <div class="button bb">І</div>
+              <div class="button bb">И</div>
               <div class="button bn">Т</div>
               <div class="button bm">Ь</div>
               <div class="button bcomma">Б</div>
