@@ -9,6 +9,10 @@ Keyboard = function (layout = QWERTY_LAYOUT) {
   this.fnkToClassMap = this.fnkToClassMapFactory(layout);
 };
 
+Keyboard.prototype.getLayout = function () {
+  return this.layout;
+}
+
 Keyboard.prototype.fnkToClassMapFactory = function (layout) {
   if (layout === UA_LAYOUT) {
     return this.uaFnkToClassMap();
@@ -320,52 +324,25 @@ Keyboard.prototype.pressButton = function (button, add) {
   const isCaseSensitive = lowerButton !== upperButton;
 
   if (!add) {
-    document.querySelectorAll(".active").removeClass("active");
+    const list = document.querySelectorAll(".active");
+    
+    list.forEach(x => x.classList.remove("active"))
   }
 
   className = this.getButtonClass(lowerButton);
   try {
-    document.querySelectorAll('.' + className).addClass("active");
+    const list = document.querySelectorAll('.' + className);
+
+    list.forEach(x => x.classList.add('active'));
   } catch (ex) {
     console.error('Class missed', '.' + className);
   }
 
   if (isCaseSensitive && button === upperButton) {
-    document.querySelectorAll(".bshift").addClass("active");
-  }
-};
+    const list = document.querySelectorAll(".bshift");
 
-Element.prototype.addClass = function (c) {
-  this.className += " " + c + " ";
-  return this;
-};
-
-NodeList.prototype.addClass = function (c) {
-  var el, _i, _len;
-  for (_i = 0, _len = this.length; _i < _len; _i++) {
-    el = this[_i];
-    el.addClass(c);
+    list.forEach(x => x.classList.add('active'));
   }
-  return this;
-};
-
-Element.prototype.removeClass = function (c) {
-  var r;
-  r = new RegExp("\\s" + c + '\\s?', 'gi');
-  this.className = (" " + this.className).replace(r, '');
-  if (this.className[0] === ' ') {
-    this.className = this.className.substr(1);
-  }
-  return this;
-};
-
-NodeList.prototype.removeClass = function (c) {
-  var el, _i;
-  for (_i = this.length - 1; _i >= 0; _i--) {
-    el = this[_i];
-    el.removeClass(c);
-  }
-  return this;
 };
 
 export default Keyboard;
