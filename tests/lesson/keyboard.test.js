@@ -11,6 +11,6 @@ group(filePath, () => {
 
         const k = new Keyboard();
 
-        qa.equal(k.getLayout(), '1');
+        qa.equal(k.getLayout(), 'qwerty');
     });
 });
