@@ -324,14 +324,14 @@ Keyboard.prototype.pressButton = function (button, add) {
   const isCaseSensitive = lowerButton !== upperButton;
 
   if (!add) {
-    const list = document.querySelectorAll(".active");
-    
-    list.forEach(x => x.classList.remove("active"))
+    const list = this.findElements(".active");
+
+    list.forEach(x => x.classList.remove("active"));
   }
 
   className = this.getButtonClass(lowerButton);
   try {
-    const list = document.querySelectorAll('.' + className);
+    const list = this.findElements('.' + className);
 
     list.forEach(x => x.classList.add('active'));
   } catch (ex) {
@@ -339,10 +339,19 @@ Keyboard.prototype.pressButton = function (button, add) {
   }
 
   if (isCaseSensitive && button === upperButton) {
-    const list = document.querySelectorAll(".bshift");
+    const list = this.findElements(".bshift");
 
     list.forEach(x => x.classList.add('active'));
   }
 };
+
+/**
+ * @private
+ * @param {String} selector 
+ * @returns {NodeList}
+ */
+Keyboard.prototype.findElements = function (selector) {
+  return document.querySelectorAll(selector);
+}
 
 export default Keyboard;
