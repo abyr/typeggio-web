@@ -74,4 +74,10 @@ group(filePath, () => {
             }, PERIOD);
         });
     });
+
+    test('wpm', () => {
+        const statist = new Statist();
+
+        const wpm = statist.getWordsPerMinute();
+    });
 });

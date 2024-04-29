@@ -86,7 +86,13 @@ class Statist {
     }
 
     getWordsPerMinute() {
-        const msPerWord = this.getSpentTime() / this.getWordsCount();
+        const wordsCount = this.getWordsCount();
+
+        if (!wordsCount) {
+            return 0;
+        }
+
+        const msPerWord = this.getSpentTime() / wordsCount;
         const wpm = (60 * 1000 / msPerWord).toFixed(2);
 
         return wpm;
