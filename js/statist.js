@@ -1,7 +1,7 @@
 class Statist {
     constructor() {
-        this.startTime = null;
-        this.endTime = null;
+        this._setStartTime(null);
+        this._setEndTime(null);
 
         /**
          * @private
@@ -69,22 +69,41 @@ class Statist {
     }
 
     resetTime() {
-        this.startTime = null;
-        this.endTime = null;
+        this._setStartTime(null);
+        this._setEndTime(null);
     }
 
     startTimer() {
-        this.startTime = getTime();
+        this._setStartTime(getTime());
+    }
+
+    /**
+     * @private
+     * @param {Number} startTime 
+     */
+    _setStartTime(startTime) {
+        this.startTime = startTime;
     }
 
     endTimer() {
-        this.endTime = getTime();
+        this._setEndTime(getTime());
+    }
+
+    /**
+     * @private
+     * @param {Number} endTime 
+     */
+    _setEndTime(endTime) {
+        this.endTime = endTime;
     }
 
     getSpentTime() {
         return this.endTime - this.startTime;
     }
 
+    /**
+     * @returns {String}
+     */
     getWordsPerMinute() {
         const wordsCount = this.getWordsCount();
 

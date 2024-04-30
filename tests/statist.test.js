@@ -8,6 +8,7 @@ const filePath = fileURLToPath(import.meta.url);
 
 const codeA = letters.charToCode('a');
 const codeB = letters.charToCode('b');
+const ONE_MINUTE = 1000 * 60;
 
 group(filePath, () => {
     test('misprints storing', () => {
@@ -36,7 +37,7 @@ group(filePath, () => {
         tester.equal(statist.getWordsCount(), 9);
     });
 
-    test('reset', () => {
+    test('reset time', () => {
         const statist = new Statist();
 
         statist.addMisprint({
@@ -51,7 +52,7 @@ group(filePath, () => {
         tester.equal(statist.getWordsCount(), null);
     });
 
-    test('spent time', () => {
+    test('spent time is correct', () => {
         const statist = new Statist();
         const PERIOD = 50;
         const PERIOD_CORRECTION = 5;
@@ -75,9 +76,39 @@ group(filePath, () => {
         });
     });
 
-    test('wpm', () => {
-        const statist = new Statist();
+    group('words per minute (wpm)', () => {
 
-        const wpm = statist.getWordsPerMinute();
+        test('wpm is 0 if no stats', () => {
+            const statist = new Statist();
+
+            const wpm0 = statist.getWordsPerMinute();
+
+            tester.equal(wpm0, 0, 'Words per minute must be zero');
+        });
+        
+        test('wpm is 20', () => {
+            const statist = new Statist();
+
+            statist.setWordsCount(20);
+            statist._setStartTime(0);
+            statist._setEndTime(ONE_MINUTE);
+
+            const wpm = statist.getWordsPerMinute();
+
+            tester.equal(wpm, '20.00', 'Words per munute must be 20');
+        });
+
+        test('wpm is 44 average', () => {
+            const statist = new Statist();
+            const date = new Date();
+
+            statist.setWordsCount(44);
+            statist._setStartTime(+date);
+            statist._setEndTime(+date + ONE_MINUTE);
+
+            const wpm44 = statist.getWordsPerMinute();
+
+            tester.equal(wpm44, (44).toFixed(2), 'Words per minute must be 44');
+        });
     });
 });
