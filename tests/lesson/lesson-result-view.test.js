@@ -23,9 +23,9 @@ group(filePath, () => {
 
         const html = v.getHtml();
 
-        qa.assert(html.indexOf('Misprints: 0') > 0);
-        qa.assert(html.indexOf('Spent time: 0:00') > 0);
-        qa.assert(html.indexOf('Words per minute: 0') > 0);
+        qa.assert(html.indexOf('Misprints: 0') > 0, 'Must be zero misprints');
+        qa.assert(html.indexOf('Spent time: 0:00') > 0, 'Must be zero spent time');
+        qa.assert(html.indexOf('Words per minute: 0') > 0, 'Must be zero wpm');
     });
 
     test('has misprints', () => {
@@ -42,7 +42,7 @@ group(filePath, () => {
 
         const html = v.getHtml();
 
-        qa.assert(html.indexOf('Misprints: 2') > 0);
+        qa.assert(html.indexOf('Misprints: 2') > 0, 'Must be 2 misprints');
     });
     
     test('spent time', () => {
@@ -62,9 +62,9 @@ group(filePath, () => {
 
         const html = v.getHtml();
 
-        qa.assert(html.indexOf('Misprints: 1') > 0);
-        qa.assert(html.indexOf('Spent time: 1:00') > 0);
-        qa.assert(html.indexOf('Words per minute: 12.00') > 0);
-        qa.assert(html.indexOf('Advanced beginner') > 0);
+        qa.assert(html.indexOf('Misprints: 1') > 0, 'Must be 1 misprint');
+        qa.assert(html.indexOf('Spent time: 1:00') > 0, 'Must be 1 min spent');
+        qa.assert(html.indexOf('Words per minute: 12.00') > 0, 'must be 12 wpm');
+        qa.assert(html.indexOf('Advanced beginner') > 0, 'Reached level must be Advanced beginner');
     });
 });

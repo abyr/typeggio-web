@@ -11,7 +11,7 @@ group(filePath, () => {
     test('default layouts is qwerty', () => {
         const k = new Keyboard();
 
-        qa.equal(k.getLayout(), 'qwerty');
+        qa.equal(k.getLayout(), 'qwerty', 'Default layout must be qwerty');
     });
 
     group('qwerty layout', () => {
@@ -60,8 +60,8 @@ group(filePath, () => {
         
         k.pressButton('a');
 
-        qa.assert(aNode.classList.contains('active'), 'button a must be pressed');
-        qa.assert(!bNode.classList.contains('active'), 'button b must not be pressed');
+        qa.assert(aNode.classList.contains('active'), 'Button a must be pressed');
+        qa.assert(!bNode.classList.contains('active'), 'Button b must not be pressed');
     });
 
 });
