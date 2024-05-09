@@ -9,6 +9,7 @@ class Doc {
 class DocElement {
     constructor() {
         this.classList = new ClassList();
+        this.innerHTML = '';
     }
 }
 
