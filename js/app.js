@@ -4,6 +4,7 @@ import level from './lesson/level.js';
 import NavigationView from './navigation-view.js';
 import LegendView from './legend-view.js';
 import PreferrencesView from './preferrences-view.js';
+import LessonsListView from './lessons-list-view.js';
 
 let globalLayout;
 let results;
@@ -60,31 +61,18 @@ const screenController = {
         const infoJSON = await info.json();
 
         const section = document.querySelector('#landing-layout');
-        const lessonCardsContainer = document.createElement('ul');
 
-        lessonCardsContainer.id = 'lesson-select';
+        const lessonsCardView = new LessonsListView({
+            parentElement: section
+        });
 
-        Object.keys(infoJSON.lessons).sort((a, b) => {
-            return Number(a) - Number(b);
+        lessonsCardView.setInfo({ infoJSON });
+        lessonsCardView.render();
 
-        }).map(number => {
-            const cardEl = document.createElement('li');
-
-            cardEl.classList.add('lesson-card');
-            cardEl.setAttribute('data-lesson-number', number);
-            cardEl.setAttribute('tabindex', '0');
-
-            const titleEl = document.createElement('div');
-
-            titleEl.classList.add('lesson-title');
-            titleEl.innerHTML = infoJSON.lessons[number].title.replace('Lesson ', '');
-
-            cardEl.append(titleEl);
-
-            const resEl = document.createElement('div');
-
-            resEl.classList.add('lesson-brief-result');
-            cardEl.append(resEl);
+        const cardsList = document.querySelectorAll('.lesson-card');
+        
+        Array.from(cardsList).forEach(cardEl => {
+            const number = cardEl.getAttribute('data-lesson-number');
 
             cardEl.addEventListener('click', evnt => {
                 const fileName = `lesson-${String(number).padStart(2, '0')}.txt`;
@@ -100,11 +88,7 @@ const screenController = {
                 }
             });
 
-            lessonCardsContainer.append(cardEl);
-
         });
-
-        section.prepend(lessonCardsContainer);
     },
 
     clearLayout: () => {
