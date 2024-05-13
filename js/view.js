@@ -1,3 +1,6 @@
+/**
+ * Uses element as parent element for rendering
+ */
 class View {
     constructor({ element }) {
         this.element = element;

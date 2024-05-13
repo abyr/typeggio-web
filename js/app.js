@@ -51,7 +51,6 @@ const screenController = {
         });
 
         lesson.element.addEventListener('lesson:finished', saveLessonResult);
-
     },
 
     setLayoutInfo: async function (layout) {
@@ -60,16 +59,16 @@ const screenController = {
         const info = await fetch(infoURL);
         const infoJSON = await info.json();
 
-        const section = document.querySelector('#landing-layout');
+        const landingSection = document.querySelector('#landing-layout');
 
         const lessonsCardView = new LessonsListView({
-            parentElement: section
+            parentElement: landingSection
         });
 
         lessonsCardView.setInfo({ infoJSON });
         lessonsCardView.render();
 
-        section.addEventListener('lesson:selected', this.selectLesson);
+        landingSection.addEventListener('lesson:selected', this.selectLesson);
     },
 
     selectLesson: (evnt) => {

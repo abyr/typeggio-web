@@ -1,3 +1,7 @@
+/**
+ * Add child element into parent element. Use child element for rendering.
+ * Generates new element with id containerId inside parentElement.
+ */
 class ChildView {
     constructor({ parentElement }) {
         
@@ -13,7 +17,7 @@ class ChildView {
     }
 
     getContainer() {
-        const c = document.getElementById(this.containerId);
+        const c = this.parentElement.querySelector('#' + this.containerId);
 
         if (c) {
             return c;
