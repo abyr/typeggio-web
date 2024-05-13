@@ -69,26 +69,14 @@ const screenController = {
         lessonsCardView.setInfo({ infoJSON });
         lessonsCardView.render();
 
-        const cardsList = document.querySelectorAll('.lesson-card');
-        
-        Array.from(cardsList).forEach(cardEl => {
-            const number = cardEl.getAttribute('data-lesson-number');
+        section.addEventListener('lesson:selected', this.selectLesson);
+    },
 
-            cardEl.addEventListener('click', evnt => {
-                const fileName = `lesson-${String(number).padStart(2, '0')}.txt`;
+    selectLesson: (evnt) => {
+        const { number } = evnt.detail;
+        const fileName = `lesson-${String(number).padStart(2, '0')}.txt`;
 
-                screenController.lessonLayout(fileName, evnt.currentTarget.querySelector('.lesson-title').textContent);
-            });
-
-            cardEl.addEventListener('keypress', evnt => {
-                if (evnt.key === 'Enter') {
-                    const fileName = `lesson-${String(number).padStart(2, '0')}.txt`;
-
-                    screenController.lessonLayout(fileName, evnt.currentTarget.querySelector('.lesson-title').textContent);
-                }
-            });
-
-        });
+        screenController.lessonLayout(fileName, evnt.currentTarget.querySelector('.lesson-title').textContent);
     },
 
     clearLayout: () => {
