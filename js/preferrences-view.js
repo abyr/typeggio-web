@@ -1,5 +1,5 @@
 import PreferrencesStoreAdapter from './storage-adapters/preferrences-storage-adapter.js';
-import View from './view.js';
+import View from './classes/view.js';
 
 const SHOW_KEYBOARD_KEY = 'showKeyboard';
 const LAYOUT_KEY = 'layout';

@@ -1,4 +1,4 @@
-import View from "./view.js";
+import View from "./classes/view.js";
 
 class NavigationView extends View {
 

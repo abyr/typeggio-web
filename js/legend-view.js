@@ -1,4 +1,4 @@
-import ChildView from './child-view.js';
+import ChildView from './classes/child-view.js';
 import level from './lesson/level.js';
 
 class LegendView extends ChildView {

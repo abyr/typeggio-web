@@ -1,4 +1,4 @@
-import ChildView from '../child-view.js';
+import ChildView from '../classes/child-view.js';
 import level from "./level.js";
 import duration from "../duration.js";
 import letters from '../letters.js';

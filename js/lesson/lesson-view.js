@@ -1,6 +1,6 @@
 import Keyboard from './keyboard.js';
 import TypingHint from './typing-hint.js';
-import TextIterator from "./text-iterator.js";
+import TextIterator from "../classes/text-iterator.js";
 import letters from '../letters.js';
 
 /**

@@ -1,4 +1,4 @@
-import FileIterator from './text-file-iterator.js';
+import FileIterator from '../classes/text-file-iterator.js';
 import LessonModel from './lesson-model.js';
 import LessonView from './lesson-view.js';
 import LessonStatsView from './lesson-stats-view.js';

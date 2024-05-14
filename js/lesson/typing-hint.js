@@ -1,4 +1,4 @@
-import ElementWrapper from './element-wrapper.js';
+import ElementWrapper from '../classes/element-wrapper.js';
 
 const NEXT_LINE_CODE = 'Enter';
 

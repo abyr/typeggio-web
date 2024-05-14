@@ -1,4 +1,4 @@
-import ChildView from "./child-view.js";
+import ChildView from "./classes/child-view.js";
 
 /**
  * @fires LessonsCardView#lesson:selected
