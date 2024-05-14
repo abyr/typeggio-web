@@ -44,17 +44,16 @@ class LessonsCardView extends ChildView {
     }
 
     getHtml () {
-        const infoJSON = this.infoJSON;
-        const list = Object.keys(infoJSON.lessons).sort((a, b) => {
-            return Number(a) - Number(b);
-        }).map(number => {
+        const lessonNumbers = this.getLessonNumbers();
+        
+        const list = lessonNumbers.map(number => {
             return `
                 <li 
                     class="lesson-card"
                     data-lesson-number="${number}"
                     tabindex="0"
                 >
-                    <div class="lesson-title">${infoJSON.lessons[number].title.replace('Lesson ', '')}</div>
+                    <div class="lesson-title">${this.getLessonTitle(number)}</div>
                     <div class="lesson-brief-result"></div>
                 </li>`});
 
@@ -62,6 +61,16 @@ class LessonsCardView extends ChildView {
             <ul id="lesson-select">
                 ${list.join('')}
             </ul>`;
+    }
+
+    getLessonTitle(number) {
+        return this.infoJSON.lessons[number].title.replace('Lesson ', '');
+    }
+
+    getLessonNumbers() {
+        return Object.keys(this.infoJSON.lessons).sort((a, b) => {
+            return Number(a) - Number(b);
+        });
     }
 }
 

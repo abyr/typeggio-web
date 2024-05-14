@@ -74,8 +74,9 @@ const screenController = {
     selectLesson: (evnt) => {
         const { number } = evnt.detail;
         const fileName = `lesson-${String(number).padStart(2, '0')}.txt`;
+        const lessonCardEl = evnt.currentTarget.querySelector(`[data-lesson-number="${number}"]`);
 
-        screenController.lessonLayout(fileName, evnt.currentTarget.querySelector('.lesson-title').textContent);
+        screenController.lessonLayout(fileName, lessonCardEl.textContent);
     },
 
     clearLayout: () => {
