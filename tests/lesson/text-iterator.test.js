@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import { group, test } from '../../test-tools/test-runner.js';
 import tester from '../../test-tools/tester.js';
-import TextIterator from '../../js/lesson/text-iterator.js';
+import TextIterator from '../../js/classes/text-iterator.js';
 
 const filePath = fileURLToPath(import.meta.url);
 
