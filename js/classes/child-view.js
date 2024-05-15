@@ -1,3 +1,7 @@
+import sharedState from "./shared-state.js";
+
+const SHARED_VIEW_IDX_FIELD_NAME = 'view-index';
+
 /**
  * Add child element into parent element. Use child element for rendering.
  * Generates new element with id containerId inside parentElement.
@@ -7,7 +11,9 @@ class ChildView {
         
         this.parentElement = parentElement;
 
-        this.containerId = undefined; 
+        const idx = sharedState.incProp(SHARED_VIEW_IDX_FIELD_NAME);
+
+        this.containerId = `view-idx-${idx}`;
     }
 
     render() {
