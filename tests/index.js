@@ -1,3 +1,4 @@
+import './classes/shared-state.test.js';
 import './duration.test.js';
 import './letters.test.js';
 import './lesson/keyboard.test.js';
