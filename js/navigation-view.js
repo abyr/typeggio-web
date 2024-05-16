@@ -7,6 +7,8 @@ import View from "./classes/view.js";
 class NavigationView extends View {
 
     constructor({ element }) {
+        super({ element });
+        
         this.element = element;
 
         /**
@@ -16,7 +18,7 @@ class NavigationView extends View {
     }
 
     /**
-     * @param {NavigationLink} links 
+     * @param {NavigationLink[]} links 
      */
     setLinks(links) {
         this.links = links;
