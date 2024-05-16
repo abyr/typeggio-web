@@ -24,7 +24,7 @@ group(filePath, () => {
 
         const html = nav.getHtml();
 
-        tester.assert(html.includes, '<a href="1111">aaaa</a>');
-        tester.assert(html.includes, '<a href="2222">bbbb</a>');
+        tester.assert(html.includes('<a href="1111">aaaa</a>'));
+        tester.assert(html.includes('<a href="2222">bbbb</a>'));
     });
 });
