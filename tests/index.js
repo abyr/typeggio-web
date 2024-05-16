@@ -7,4 +7,5 @@ import './lesson/lesson-result-view.test.js';
 import './lesson/lesson-stats-view.test.js';
 import './lesson/text-iterator.test.js';
 import './lesson/typing-hint.test.js';
+import './navigation-view.test.js';
 import './statist.test.js';
