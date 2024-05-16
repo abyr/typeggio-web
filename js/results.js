@@ -10,8 +10,8 @@ class Results {
         await this.storageAdapter.connect();
     }
 
-    async save(item, value) {
-        await this.storageAdapter.put(item, value);
+    async save(item, { misprintsCount, spentTime, wpm }) {
+        await this.storageAdapter.put(item, { misprintsCount, spentTime, wpm });
     }
 
     async getResult(key) {        
