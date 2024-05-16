@@ -1,7 +1,23 @@
 import View from "./classes/view.js";
 
+/**
+ * @typedef {{href: string, titke: string}} NavigationLink
+ */
+
 class NavigationView extends View {
 
+    constructor({ element }) {
+        this.element = element;
+
+        /**
+         * @type {NavigationLink[]}
+         */
+        this.links = [];
+    }
+
+    /**
+     * @param {NavigationLink} links 
+     */
     setLinks(links) {
         this.links = links;
     }
