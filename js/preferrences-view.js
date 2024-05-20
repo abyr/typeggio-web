@@ -1,5 +1,6 @@
 import PreferrencesStoreAdapter from './storage-adapters/preferrences-storage-adapter.js';
 import View from './classes/view.js';
+import Translator from "./classes/translator.js";
 
 const SHOW_KEYBOARD_KEY = 'showKeyboard';
 const LAYOUT_KEY = 'layout';
@@ -13,8 +14,8 @@ const layouts = [
 ];
 
 const prefsTitleMap = {};
-prefsTitleMap[SHOW_KEYBOARD_KEY] = 'Show keyboard';
-prefsTitleMap[LAYOUT_KEY] = 'Keyboard layout';
+prefsTitleMap[SHOW_KEYBOARD_KEY] = 'show-keyboard';
+prefsTitleMap[LAYOUT_KEY] = 'keyboard-layout';
 
 class PreferrencesView extends View {
     constructor({ element }) {
@@ -24,7 +25,7 @@ class PreferrencesView extends View {
         this.defaultPreferrencesMap[LAYOUT_KEY] = QWERTY_LAYOUT_VALUE;
         this.defaultPreferrencesMap[SHOW_KEYBOARD_KEY] = true;
 
-        this.prefsMap = Object.assign({}, this.defaultPreferrencesMap);
+        this.prefsMap = Object.assign({}, this.defaultPreferrencesMap);        
     }
 
     async init() {
@@ -38,6 +39,10 @@ class PreferrencesView extends View {
             prefs[x.id] = x.value;
             return prefs;
         }, this.prefsMap);
+
+        this.translator = new Translator();
+
+        await this.translator.downloadLanguage();
     }
 
     render() {
@@ -84,7 +89,7 @@ class PreferrencesView extends View {
         selectEl.addEventListener('change', async (event) => {
             await this.updatePreferrence(key, selectEl.value);
 
-            if (confirm('Reload page?')) {
+            if (confirm(this.translator.getTranslation('reload-page?'))) {
                 document.location.reload();
             };
         });
@@ -131,7 +136,7 @@ class PreferrencesView extends View {
         const labelEl = document.createElement('label');
 
         labelEl.setAttribute('for',  inputId);
-        labelEl.innerText = prefsTitleMap[key] || key;
+        labelEl.innerText = this.translator.getTranslation(prefsTitleMap[key]);
 
         return labelEl;
     }
