@@ -3,28 +3,32 @@ class Translator {
         if (lang) {
             this.langCode = lang;
         } else {
-            this.langCode = this.getLocalLanguage();
+            this.langCode = this.getLocalLang();
         }
 
         this.translations = null;
     }
 
-    getLocalLanguage() {
+    async init() {
+        await this.fetchLangFile(this.langCode);
+    }
+
+    getLocalLang() {
         const lang = navigator.languages ? navigator.languages[0] : navigator.language;
     
         return lang.substr(0, 2);
     }
 
-    async setLanguage(langCode) {
+    async setLang(langCode) {
         this.langCode = langCode;
 
-        await this.downloadLanguage(langCode);
+        await this.fetchLangFile(langCode);
     }
 
-    async downloadLanguage() {
-        await fetch(`/i18n/${this.langCode}.json`)
-            .then((res) => res.json())
-            .then((translations) => {
+    async fetchLangFile(langCode) {
+        await fetch(`/i18n/${langCode}.json`)
+            .then(data => data.json())
+            .then(translations => {
                 this.translations = translations;
             })
             .catch(() => {
@@ -33,7 +37,13 @@ class Translator {
     }
 
     getTranslation(key) {
-        return this.translations[key];
+        const res = this.translations[key];
+
+        if (!res) {
+            console.error(`Missing translation for ${key} (${this.langCode})`);
+        }
+
+        return res;
     }
 }
 export default Translator;
