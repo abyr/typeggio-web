@@ -42,7 +42,7 @@ class PreferrencesView extends View {
 
         this.translator = new Translator();
 
-        await this.translator.downloadLanguage();
+        await this.translator.init();
     }
 
     render() {
@@ -89,7 +89,7 @@ class PreferrencesView extends View {
         selectEl.addEventListener('change', async (event) => {
             await this.updatePreferrence(key, selectEl.value);
 
-            if (confirm(this.translator.getTranslation('reload-page?'))) {
+            if (confirm(this.i18n('reload-page?'))) {
                 document.location.reload();
             };
         });
@@ -136,7 +136,7 @@ class PreferrencesView extends View {
         const labelEl = document.createElement('label');
 
         labelEl.setAttribute('for',  inputId);
-        labelEl.innerText = this.translator.getTranslation(prefsTitleMap[key]);
+        labelEl.innerText = this.i18n(prefsTitleMap[key]);
 
         return labelEl;
     }
@@ -159,6 +159,10 @@ class PreferrencesView extends View {
 
     getLayout() {
         return this.prefsMap[LAYOUT_KEY] || QWERTY_LAYOUT_VALUE;
+    }
+
+    i18n(key) {
+        return this.translator.getTranslation(key);
     }
 
     _isEnabled(key) {

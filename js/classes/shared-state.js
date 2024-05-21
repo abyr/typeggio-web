@@ -32,7 +32,6 @@ class SharedState {
     getProp(name) {
         return sharedState[name];
     }
-
     
 }
 
