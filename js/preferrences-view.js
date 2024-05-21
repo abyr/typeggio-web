@@ -13,10 +13,6 @@ const layouts = [
     UA_LAYOUT_VALUE,
 ];
 
-const prefsTitleMap = {};
-prefsTitleMap[SHOW_KEYBOARD_KEY] = 'show-keyboard';
-prefsTitleMap[LAYOUT_KEY] = 'keyboard-layout';
-
 class PreferrencesView extends View {
     constructor({ element }) {
         super({ element });
@@ -89,7 +85,7 @@ class PreferrencesView extends View {
         selectEl.addEventListener('change', async (event) => {
             await this.updatePreferrence(key, selectEl.value);
 
-            if (confirm(this.i18n('reload-page?'))) {
+            if (confirm(this.i18n('reload-page?') || 'Reload page?')) {
                 document.location.reload();
             };
         });
@@ -136,7 +132,12 @@ class PreferrencesView extends View {
         const labelEl = document.createElement('label');
 
         labelEl.setAttribute('for',  inputId);
-        labelEl.innerText = this.i18n(prefsTitleMap[key]);
+
+        if (key === 'show-keyboard') {
+            labelEl.innerText = this.i18n('show-keyboard') || 'Show keyboard';
+        } else if (key === 'keyboard-layout') {
+            labelEl.innerText = this.i18n('keyboard-layout') || 'Keyboard layout';
+        }
 
         return labelEl;
     }
