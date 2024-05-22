@@ -1,6 +1,6 @@
 import PreferrencesStoreAdapter from './storage-adapters/preferrences-storage-adapter.js';
 import View from './classes/view.js';
-import Translator from "./classes/translator.js";
+import Translator from "../js-translator/translator.js";
 
 const SHOW_KEYBOARD_KEY = 'showKeyboard';
 const LAYOUT_KEY = 'layout';
@@ -133,9 +133,9 @@ class PreferrencesView extends View {
 
         labelEl.setAttribute('for',  inputId);
 
-        if (key === 'show-keyboard') {
+        if (key === SHOW_KEYBOARD_KEY) {
             labelEl.innerText = this.i18n('show-keyboard') || 'Show keyboard';
-        } else if (key === 'keyboard-layout') {
+        } else if (key === LAYOUT_KEY) {
             labelEl.innerText = this.i18n('keyboard-layout') || 'Keyboard layout';
         }
 
