@@ -4,3 +4,6 @@
 [submodule "test-tools"]
 	path = test-tools
 	url = https://github.com/abyr/js-test-tools
+[submodule "js-translator"]
+	path = js-translator
+	url = https://github.com/abyr/js-translator
