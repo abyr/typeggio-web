@@ -1,4 +1,10 @@
 {
+    "lessons": "Lessons",
+    "spent-time-result-$0": "Spent time: $0",
+    "wpm-result-$0": "Words per minute: $0",
+    "misprints-result-$0": "Misprints: $0",
+    "misprinted-letters": "Misprinted letters", 
+
     "keyboard-layout": "Keyboard layout",
     "reload-page?": "Reload page?", 
     "show-keyboard": "Show keyboard",

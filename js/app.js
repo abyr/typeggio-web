@@ -5,6 +5,7 @@ import NavigationView from './navigation-view.js';
 import LegendView from './legend-view.js';
 import PreferrencesView from './preferrences-view.js';
 import LessonsListView from './lessons-list-view.js';
+import i18n from './classes/shared-translator.js'
 
 let globalLayout;
 let results;
@@ -14,15 +15,16 @@ let navigationView;
 
 const PREFERRENCES_ELEMENT_SELECTOR = '#preferrences';
 const LESSON_CONTAINER_SELECTOR = '#lesson-container';
-const LESSONS_TITLE = 'Lessons';
 
 const screenController = {
 
     landingLayout: async (layout) => {
+        await i18n.init();
+
         await screenController.setLayoutInfo(layout);
 
         navigationView.setLinks([{
-            title: LESSONS_TITLE
+            title: i18n.translate('lessons'),
         }]);
         navigationView.render();
 
@@ -36,7 +38,7 @@ const screenController = {
 
         navigationView.setLinks([{
             href: window.location.href,
-            title: LESSONS_TITLE
+            title: i18n.translate('lessons')
         }, {
             title: lessonShortTitle
         }]);

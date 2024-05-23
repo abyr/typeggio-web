@@ -1,4 +1,10 @@
 {
+    "lessons": "Вправи",
+    "spent-time-result-$0": "Витрачений час: $0",
+    "wpm-result-$0": "Слів за хвилину: $0",
+    "misprints-result-$0" : "Помилок друку: $0",
+    "misprinted-letters": "Літери з помилками",
+
     "keyboard-layout": "Раскладка клавіатури",
     "reload-page?": "Оновити сторінку?", 
     "show-keyboard": "Показати клавіатуру",

@@ -1,5 +1,6 @@
 import ChildView from './classes/child-view.js';
 import level from './lesson/level.js';
+import i18n from './classes/shared-translator.js'
 
 class LegendView extends ChildView {
     constructor({ parentElement }) {
@@ -23,7 +24,7 @@ class LegendView extends ChildView {
             items.push(elHtml);
         });
 
-        return 'Levels: <span>' + items.join(' ') + '</span>';
+        return `${i18n.translate('levels')}: <span>${items.join(' ')}</span>`;
     }
 }
 

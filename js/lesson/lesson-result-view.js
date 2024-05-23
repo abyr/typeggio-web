@@ -2,6 +2,7 @@ import ChildView from '../classes/child-view.js';
 import level from "./level.js";
 import duration from "../duration.js";
 import letters from '../letters.js';
+import i18n from '../classes/shared-translator.js'
 
 class LessonResultView extends ChildView {
     constructor({ parentElement, statist }) {
@@ -31,13 +32,13 @@ class LessonResultView extends ChildView {
                 <span class="legend-item card-level-${myLevel.code}">${myLevel.title}</span>
             </div>
             <div class="results-spent-time">
-                Spent time: ${spentTime}
+                ${i18n.translate('spent-time-result-$0').replace('$0', spentTime)}
             </div>
             <div class="results-wpm">
-                Words per minute: ${wordsPerMinute}
+                ${i18n.translate('wpm-result-$0').replace('$0', wordsPerMinute)}
             </div>
             <div class="results-misprints">
-                Misprints: ${misprintsCount}
+                ${i18n.translate('misprints-result-$0').replace('$0', misprintsCount)}
             </div>
             <div>
                 ${lettersHTML}
@@ -68,7 +69,7 @@ class LessonResultView extends ChildView {
         const misprints = sortedList.length && sortedList.join('');
 
         return `
-            <div class="results-misprints-header">Misprinted letters:</div>
+            <div class="results-misprints-header">${i18n.translate('misprinted-letters')}:</div>
             ${misprints || 'none'}
         `;
     }
