@@ -1,7 +1,7 @@
 import Translator from '../../js-translator/translator.js';
 
 let translatorInstance;
-const I18N_BASE_PATH = '../i18n'
+const I18N_BASE_PATH = './i18n'
 
 /**
  * Translator facade with a single instance
@@ -32,7 +32,7 @@ class TranslatorFacade {
         if (!this.getLang()) {
             throw new Error("Translator is not inited");
         }
-        
+
         return translatorInstance.getTranslation(key);
     }
 }

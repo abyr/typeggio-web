@@ -4,6 +4,7 @@
     "wpm-result-$0": "Words per minute: $0",
     "misprints-result-$0": "Misprints: $0",
     "misprinted-letters": "Misprinted letters", 
+    "levels": "Levels",
 
     "keyboard-layout": "Keyboard layout",
     "reload-page?": "Reload page?", 

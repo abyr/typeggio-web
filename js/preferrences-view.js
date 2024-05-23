@@ -1,6 +1,6 @@
 import PreferrencesStoreAdapter from './storage-adapters/preferrences-storage-adapter.js';
 import View from './classes/view.js';
-import Translator from "../js-translator/translator.js";
+import i18n from './classes/shared-translator.js';
 
 const SHOW_KEYBOARD_KEY = 'showKeyboard';
 const LAYOUT_KEY = 'layout';
@@ -35,10 +35,6 @@ class PreferrencesView extends View {
             prefs[x.id] = x.value;
             return prefs;
         }, this.prefsMap);
-
-        this.translator = new Translator();
-
-        await this.translator.init();
     }
 
     render() {
@@ -85,7 +81,7 @@ class PreferrencesView extends View {
         selectEl.addEventListener('change', async (event) => {
             await this.updatePreferrence(key, selectEl.value);
 
-            if (confirm(this.i18n('reload-page?') || 'Reload page?')) {
+            if (confirm(i18n.translate('reload-page?'))) {
                 document.location.reload();
             };
         });
@@ -134,9 +130,9 @@ class PreferrencesView extends View {
         labelEl.setAttribute('for',  inputId);
 
         if (key === SHOW_KEYBOARD_KEY) {
-            labelEl.innerText = this.i18n('show-keyboard') || 'Show keyboard';
+            labelEl.innerText = i18n.translate('show-keyboard');
         } else if (key === LAYOUT_KEY) {
-            labelEl.innerText = this.i18n('keyboard-layout') || 'Keyboard layout';
+            labelEl.innerText = i18n.translate('keyboard-layout');
         }
 
         return labelEl;
@@ -160,10 +156,6 @@ class PreferrencesView extends View {
 
     getLayout() {
         return this.prefsMap[LAYOUT_KEY] || QWERTY_LAYOUT_VALUE;
-    }
-
-    i18n(key) {
-        return this.translator.getTranslation(key);
     }
 
     _isEnabled(key) {

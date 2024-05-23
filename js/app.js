@@ -19,8 +19,6 @@ const LESSON_CONTAINER_SELECTOR = '#lesson-container';
 const screenController = {
 
     landingLayout: async (layout) => {
-        await i18n.init();
-
         await screenController.setLayoutInfo(layout);
 
         navigationView.setLinks([{
@@ -171,6 +169,8 @@ const screenController = {
 };
 
 window.onload = async () => {
+    await i18n.init();
+
     results = new Results();
 
     await results.init();
