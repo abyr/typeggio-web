@@ -169,8 +169,6 @@ const screenController = {
 };
 
 window.onload = async () => {
-    await i18n.init();
-
     results = new Results();
 
     await results.init();
@@ -184,6 +182,9 @@ window.onload = async () => {
     preferrencesView = new PreferrencesView({ element: preferrencesEl });
 
     await preferrencesView.init();
+
+    await i18n.init(preferrencesView.getLocale());
+    
     preferrencesView.render();
 
     globalLayout = await preferrencesView.getLayout();
