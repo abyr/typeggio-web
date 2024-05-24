@@ -25,15 +25,29 @@ class TranslatorFacade {
     }
 
     getLang() {
+        if (!translatorInstance) {
+            console.error("Translator is not inited");
+            return;
+        }
+
         return translatorInstance.getLangCode();
     }
 
     translate(key) {
+        let res = '';
+
         if (!this.getLang()) {
-            throw new Error("Translator is not inited");
+            console.error("Translator is not inited");
+            return res;
         }
 
-        return translatorInstance.getTranslation(key);
+        try {
+            res = translatorInstance.getTranslation(key);
+        } catch (err) {
+            console.error(err);
+        }
+
+        return res;
     }
 }
 
