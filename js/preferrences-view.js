@@ -4,6 +4,9 @@ import i18n from './classes/shared-translator.js';
 
 const SHOW_KEYBOARD_KEY = 'showKeyboard';
 const LAYOUT_KEY = 'layout';
+const LOCALE_KEY = 'locale';
+
+const locales = ['uk', 'en'];
 
 const QWERTY_LAYOUT_VALUE = 'qwerty';
 const UA_LAYOUT_VALUE = 'ua';
@@ -20,6 +23,7 @@ class PreferrencesView extends View {
         this.defaultPreferrencesMap = {};
         this.defaultPreferrencesMap[LAYOUT_KEY] = QWERTY_LAYOUT_VALUE;
         this.defaultPreferrencesMap[SHOW_KEYBOARD_KEY] = true;
+        this.defaultPreferrencesMap[LOCALE_KEY] = locales[0];
 
         this.prefsMap = Object.assign({}, this.defaultPreferrencesMap);        
     }
@@ -48,8 +52,10 @@ class PreferrencesView extends View {
 
             if (key === LAYOUT_KEY) {
                 listItemEl = this.makeLayoutElelemnt(key, val);
-            } else {
+            } else if (key === SHOW_KEYBOARD_KEY) {
                 listItemEl = this.makeCheckboxElelemnt(key, val);
+            } else if (key === LOCALE_KEY) {
+                listItemEl = this.makeLocaleElelemnt(key, val);
             }
 
             listEl.append(listItemEl);
@@ -115,6 +121,40 @@ class PreferrencesView extends View {
         return listItemEl;
     }
 
+    makeLocaleElelemnt(key, val) {
+        const inputId = this.makePrefId(key);
+        const listItemEl = this.makePreferrenceWrapperElelemnt();
+        const labelEl = this.makeLabelElement(key);
+        const selectEl = document.createElement('select');
+
+        selectEl.id = inputId;
+
+        locales.forEach(locale => {
+            const opt = document.createElement('option');
+
+            opt.innerText = locale;
+            opt.value = locale;
+
+            if (locale === val) {
+                opt.selected = true;
+            }
+            selectEl.append(opt);
+        });
+
+        selectEl.addEventListener('change', async (event) => {
+            await this.updatePreferrence(key, selectEl.value);
+
+            if (confirm(i18n.translate('reload-page?'))) {
+                document.location.reload();
+            };
+        });
+
+        listItemEl.append(labelEl);
+        listItemEl.append(selectEl);
+
+        return listItemEl;
+    }
+
     makePreferrenceWrapperElelemnt() {
         const listItemEl = document.createElement('li');
 
@@ -133,6 +173,8 @@ class PreferrencesView extends View {
             labelEl.innerText = i18n.translate('show-keyboard');
         } else if (key === LAYOUT_KEY) {
             labelEl.innerText = i18n.translate('keyboard-layout');
+        } else if (key === LOCALE_KEY) {
+            labelEl.innerHTML = '&#x1F310;';
         }
 
         return labelEl;
@@ -156,6 +198,10 @@ class PreferrencesView extends View {
 
     getLayout() {
         return this.prefsMap[LAYOUT_KEY] || QWERTY_LAYOUT_VALUE;
+    }
+
+    getLocale() {
+        return this.prefsMap[LOCALE_KEY] || locales[0];
     }
 
     _isEnabled(key) {
