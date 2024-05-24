@@ -10,8 +10,11 @@ class LessonStatsView extends ChildView {
     }
 
     getHtml() {
+        const misprintsTpl = i18n.translate('misprints-result-$0') || 'Misprints: $0';
+        const misprintsText = misprintsTpl.replace('$0', this.getMisprintsCount());
+        
         return `<div class="stats-misprints">
-            ${i18n.translate('misprints-result-$0').replace('$0', this.getMisprintsCount())}
+            ${misprintsText}
         </div>`;
     }
 
