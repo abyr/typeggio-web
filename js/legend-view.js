@@ -19,7 +19,9 @@ class LegendView extends ChildView {
         });
 
         levelsList.forEach(function (levelItem) {
-            const elHtml = `<span class="legend-item card-level-${levelItem.code}">${levelItem.title}</span>`;
+            const levelTitle = i18n.translate(levelItem.code) || levelItem.title;
+
+            const elHtml = `<span class="legend-item card-level-${levelItem.code}">${levelTitle}</span>`;
 
             items.push(elHtml);
         });
