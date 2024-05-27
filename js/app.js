@@ -5,6 +5,7 @@ import NavigationView from './navigation-view.js';
 import LegendView from './legend-view.js';
 import PreferrencesView from './preferrences-view.js';
 import LessonsListView from './lessons-list-view.js';
+import ResultsControlsView from './results-controls-view.js';
 import i18n from './classes/shared-translator.js'
 
 let globalLayout;
@@ -12,6 +13,7 @@ let results;
 let preferrencesView;
 let lesson;
 let navigationView;
+let resultsControlsView;
 
 const PREFERRENCES_ELEMENT_SELECTOR = '#preferrences';
 const LESSON_CONTAINER_SELECTOR = '#lesson-container';
@@ -188,6 +190,11 @@ window.onload = async () => {
     preferrencesView.render();
 
     globalLayout = await preferrencesView.getLayout();
+
+    resultsControlsView = new ResultsControlsView({
+        element: document.querySelector('#results-controls')
+    });
+    resultsControlsView.render();
 
     screenController.landingLayout(globalLayout);
 
